@@ -16,12 +16,35 @@ namespace Gameplay.Entity.Base.Components
         public bool IsInvulnerable { get; private set; } = false;
         public bool IsDead => CurrentHealthAmount <= 0;
 
+        private HealthData _healthData;
+
         protected override void OnInitiate(IGameEntity owner)
         {
-            MaxHealthAmount = owner.EntityData.EntityBaseHealth;
-            IsInvulnerable = owner.EntityData.IsInvulnerable;
+            _healthData = owner.EntityData.HealthData;
+            
+            MaxHealthAmount = _healthData.MaxHealthAmount;
+            CurrentHealthAmount = _healthData.StartHealthAmount;
+            IsInvulnerable = _healthData.IsInvulnerable;
             
             CurrentHealthAmount = MaxHealthAmount;
+        }
+
+        protected override void OnRevive()
+        {
+            var previousHealth = CurrentHealthAmount;
+
+            MaxHealthAmount = _healthData.MaxHealthAmount;
+            CurrentHealthAmount = _healthData.StartHealthAmount;
+            IsInvulnerable = _healthData.IsInvulnerable;
+
+            var delta = CurrentHealthAmount - previousHealth;
+            var healthUpdateData = new HealthChangeData()
+            {
+                Inflicter = Owner,
+                DealtAmount = delta
+            };
+            
+            OnHealthUpdate?.Invoke(healthUpdateData);
         }
 
         public void ToggleInvincibility(IGameEntity owner, bool value)

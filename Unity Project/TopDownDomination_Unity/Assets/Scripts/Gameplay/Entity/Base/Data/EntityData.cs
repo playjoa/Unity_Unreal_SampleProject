@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿using System;
+using Gameplay.Entity.Base.Components;
+using Gameplay.Entity.Base.EntityComponents.BaseComponents.EntityMovement;
+using UnityEngine;
 using Utils.UniqueId.Components;
 
 namespace Gameplay.Entity.Base.Data
@@ -9,20 +12,28 @@ namespace Gameplay.Entity.Base.Data
         [Header("Meta Data")]
         [SerializeField] private string entityName;
         [SerializeField] private Sprite entityIcon;
+
+        [Header("Entity View")]
+        [SerializeField] private GameObject entityGraphicView;
+        [SerializeField] private Vector3 entityScale = Vector3.one;
         
-        [Header("Entity Data")]
+        [Header("Entity Config.")]
         [SerializeField] private EntityType entityType;
         
-        [Header("Health Data")]
-        [SerializeField] private bool isInvulnerable;
-        [SerializeField] private int entityBaseHealth;
+        [Header("Base Components Config.")]
+        [SerializeField] private HealthData healthData;
+        [SerializeField] private MovementData movementData;
+        
         
         public string EntityName => entityName;
         public Sprite EntityIcon => entityIcon;
+        
+        public GameObject EntityGraphicView => entityGraphicView;
+        public Vector3 EntityScale => entityScale;
 
         public EntityType EntityType => entityType;
         
-        public bool IsInvulnerable => isInvulnerable;
-        public int EntityBaseHealth => entityBaseHealth;
+        public HealthData HealthData => healthData;
+        public MovementData MovementData => movementData;
     }
 }

@@ -26,6 +26,11 @@ namespace Gameplay.GameControllerSystem.Controller
         [Header("Game Mode")] 
         [SerializeField] private GameModeController gameModeController;
         
+        public InputsController InputsController => inputsController;
+        public SpawnController SpawnController => spawnController;
+        public GameCameraController GameCameraController => gameCameraController;
+        public GameModeController GameModeController => gameModeController;
+        
         public IGameEntity PlayerEntity { get; private set; }
         
         private readonly List<IGameplaySystem> _gameSystems = new();
