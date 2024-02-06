@@ -15,7 +15,15 @@ namespace Gameplay.Entity.Base.Components
         public float HealthPercentage => (float) CurrentHealthAmount / MaxHealthAmount;
         public bool IsInvulnerable { get; private set; } = false;
         public bool IsDead => CurrentHealthAmount <= 0;
-        
+
+        protected override void OnInitiate(IGameEntity owner)
+        {
+            MaxHealthAmount = owner.EntityData.EntityBaseHealth;
+            IsInvulnerable = owner.EntityData.IsInvulnerable;
+            
+            CurrentHealthAmount = MaxHealthAmount;
+        }
+
         public void ToggleInvincibility(IGameEntity owner, bool value)
         {
             if (owner.Equals(Owner))

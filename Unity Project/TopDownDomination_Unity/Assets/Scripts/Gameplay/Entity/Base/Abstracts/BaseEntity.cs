@@ -13,7 +13,7 @@ namespace Gameplay.Entity.Base.Abstracts
 
         public EntityType EntityType => EntityData != null ? EntityData.EntityType : EntityType.Unknown;
         public EntityData EntityData { get; private set; }
-
+        
         public EntityHealth EntityHealth => entityHealth;
         public Transform EntityTransform => transform;
 
@@ -36,6 +36,19 @@ namespace Gameplay.Entity.Base.Abstracts
             foreach (var extraComponent in _extraComponents)
             {
                 extraComponent.ReviveComponent();
+            }
+        }
+        
+        private void OnDestroy()
+        {
+            foreach (var baseComponent in _baseComponents)
+            {
+                baseComponent.Clean();
+            }
+            
+            foreach (var extraComponent in _extraComponents)
+            {
+                extraComponent.Clean();
             }
         }
         

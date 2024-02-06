@@ -18,11 +18,20 @@ namespace Gameplay.Entity.Base.Abstracts
             OnRevive();
         }
 
+        public void Clean()
+        {
+            OnClean();
+        }
+
         protected virtual void OnInitiate(IGameEntity owner)
         {
         }
         
         protected virtual void OnRevive()
+        {
+        }
+
+        protected virtual void OnClean()
         {
         }
     }

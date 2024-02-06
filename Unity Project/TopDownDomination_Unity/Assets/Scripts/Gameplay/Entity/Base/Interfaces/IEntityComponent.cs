@@ -6,5 +6,6 @@
 
         void Initiate(IGameEntity owner);
         void ReviveComponent();
+        void Clean();
     }
 }

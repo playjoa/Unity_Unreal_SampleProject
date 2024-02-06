@@ -5,6 +5,7 @@ namespace Gameplay.GameControllerSystem.Base
 {
     public interface IGameplaySystem
     {
-        public IEnumerator Initiate(GameController gameController);
+        IEnumerator Initiate(GameController gameplaySystem);
+        void OnEnd();
     }
 }

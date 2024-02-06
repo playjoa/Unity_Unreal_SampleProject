@@ -13,14 +13,16 @@ namespace Gameplay.Entity.Base.Data
         [Header("Entity Data")]
         [SerializeField] private EntityType entityType;
         
-        [Header("Components Data")]
-        [SerializeField] private float entityBaseHealth;
+        [Header("Health Data")]
+        [SerializeField] private bool isInvulnerable;
+        [SerializeField] private int entityBaseHealth;
         
         public string EntityName => entityName;
         public Sprite EntityIcon => entityIcon;
 
         public EntityType EntityType => entityType;
         
-        public float EntityBaseHealth => entityBaseHealth;
+        public bool IsInvulnerable => isInvulnerable;
+        public int EntityBaseHealth => entityBaseHealth;
     }
 }
