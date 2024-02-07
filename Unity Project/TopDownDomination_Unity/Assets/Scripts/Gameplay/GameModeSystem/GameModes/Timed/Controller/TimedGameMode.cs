@@ -7,8 +7,7 @@ namespace Gameplay.GameModeSystem.GameModes.Timed.Controller
 {
     public class TimedGameMode : GameMode<TimedGameModeData>
     {
-
-        protected TimedGameMode(TimedGameModeData gameModeData, GameController gameController) : base(gameModeData, gameController)
+        public TimedGameMode(TimedGameModeData gameModeData, GameController gameController) : base(gameModeData, gameController)
         {
         }
 

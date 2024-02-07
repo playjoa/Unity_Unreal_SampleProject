@@ -1,5 +1,6 @@
 ﻿using Gameplay.GameControllerSystem.Controller;
 using Gameplay.GameModeSystem.Data;
+using Gameplay.GameModeSystem.GameModes.Timed.Controller;
 using Gameplay.GameModeSystem.Interfaces;
 using UnityEngine;
 
@@ -14,7 +15,7 @@ namespace Gameplay.GameModeSystem.GameModes.Timed.Data
         
         public override IGameMode GenerateGameMode(GameController gameController)
         {
-            throw new System.NotImplementedException();
+            return new TimedGameMode(this, gameController);
         }
     }
 }
