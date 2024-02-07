@@ -44,7 +44,7 @@ namespace Gameplay.GameCameraSystem.Controller
             Debug.Log("----Done Initiating CameraController----");
         }
 
-        public void OnEnd()
+        public void OnCleanUp()
         {
             throw new System.NotImplementedException();
         }

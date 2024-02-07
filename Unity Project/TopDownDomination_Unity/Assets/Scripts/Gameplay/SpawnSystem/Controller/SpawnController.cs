@@ -33,7 +33,7 @@ namespace Gameplay.SpawnSystem.Controller
             Debug.Log($"----Done Initializing SpawnController----");
         }
 
-        public void OnEnd()
+        public void OnCleanUp()
         {
             
         }

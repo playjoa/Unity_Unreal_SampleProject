@@ -4,10 +4,12 @@ using System.Collections.Generic;
 using Gameplay.Entity.Base.Interfaces;
 using Gameplay.GameCameraSystem.Controller;
 using Gameplay.GameControllerSystem.Base;
-using Gameplay.GameModes.Controller;
-using Gameplay.GameModes.Data;
+using Gameplay.GameControllerSystem.Data;
+using Gameplay.GameModeSystem.Controller;
+using Gameplay.GameModeSystem.Data;
 using Gameplay.PlayerInputs.Controller;
 using Gameplay.SpawnSystem.Controller;
+using Gameplay.UI.Controller;
 using UnityEngine;
 
 namespace Gameplay.GameControllerSystem.Controller
@@ -25,6 +27,11 @@ namespace Gameplay.GameControllerSystem.Controller
 
         [Header("Game Mode")] 
         [SerializeField] private GameModeController gameModeController;
+
+        [Header("UI")] 
+        [SerializeField] private GameUIController gameUIController;
+        
+        public GameData GameData { get; private set; }
         
         public InputsController InputsController => inputsController;
         public SpawnController SpawnController => spawnController;
@@ -54,6 +61,7 @@ namespace Gameplay.GameControllerSystem.Controller
         
         private IEnumerator InitializationCoroutine()
         {
+            GetGameData();
             SetUpSystemsInitializationOrder();
 
             gameModeController.OnGameModeEnded += OnGameModeEndedHandler;
@@ -64,6 +72,12 @@ namespace Gameplay.GameControllerSystem.Controller
             }
 
             OnGameSystemsInitialized?.Invoke(this);
+        }
+        
+        private void GetGameData()
+        {
+            // TODO - Get GameData
+            // GameData = GameLoaderController.ME.CurrentGameData;
         }
 
         private void SetUpSystemsInitializationOrder()
@@ -81,7 +95,7 @@ namespace Gameplay.GameControllerSystem.Controller
             QueueSystemInitialization(gameModeController);
 
             // UI Systems
-            // QueueSystemInitialization(playerGameUIController);
+            QueueSystemInitialization(gameUIController);
         }
         
         private void QueueSystemInitialization(IGameplaySystem gameSystem)

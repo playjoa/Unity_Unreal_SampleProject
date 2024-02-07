@@ -37,7 +37,7 @@ namespace Gameplay.PlayerInputs.Controller
             TogglePlayerInputs(true);
         }
         
-        public void OnEnd()
+        public void OnCleanUp()
         {
             _inputActions.FirePrimary.performed -= InputFirePrimaryHandler;
             _inputActions.FireSecondary.started -= InputStartFiringSecondaryHandler;

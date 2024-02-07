@@ -6,6 +6,6 @@ namespace Gameplay.GameControllerSystem.Base
     public interface IGameplaySystem
     {
         IEnumerator Initiate(GameController gameplaySystem);
-        void OnEnd();
+        void OnCleanUp();
     }
 }
