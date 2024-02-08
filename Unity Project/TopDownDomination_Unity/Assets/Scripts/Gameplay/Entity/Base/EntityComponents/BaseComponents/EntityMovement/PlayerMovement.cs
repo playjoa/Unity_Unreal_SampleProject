@@ -55,7 +55,18 @@ namespace Gameplay.Entity.Base.EntityComponents.BaseComponents.EntityMovement
             Owner.EntityTransform.position = teleportPosition;
             TogglePlayerController(true);
         }
-        
+
+        public override float GetHorizontalSpeed()
+        {
+            var playerPosition = transform.position;
+            var currentHorizontalPosition = new Vector3(playerPosition.x, 0f, playerPosition.z);
+            var distance = Vector3.Distance(currentHorizontalPosition, _previousHorizontalPosition);
+            var speed = distance / Time.deltaTime;
+            _previousHorizontalPosition = currentHorizontalPosition;
+
+            return Mathf.Clamp01(speed / _maxSpeed);
+        }
+
         protected override void OnUpdate()
         {
             if (!MovementActive) return;

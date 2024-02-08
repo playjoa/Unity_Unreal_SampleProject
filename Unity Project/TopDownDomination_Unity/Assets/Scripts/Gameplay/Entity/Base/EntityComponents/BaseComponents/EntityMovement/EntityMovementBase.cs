@@ -37,6 +37,11 @@ namespace Gameplay.Entity.Base.EntityComponents.BaseComponents.EntityMovement
             
         }
 
+        public virtual float GetHorizontalSpeed()
+        {
+            return 0;
+        }
+
         public virtual void ToggleMovement(bool value)
         {
             MovementActive = value;
