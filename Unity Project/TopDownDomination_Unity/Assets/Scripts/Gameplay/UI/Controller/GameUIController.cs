@@ -10,6 +10,10 @@ namespace Gameplay.UI.Controller
 {
     public class GameUIController : MonoBehaviour, IGameplaySystem
     {
+        [Header("Target Canvases")]
+        [SerializeField] private Canvas playerCanvas;
+        [SerializeField] private Canvas gameCanvas;
+        
         private List<IPlayerUI> _playerUIComponents = new();
         private List<IGameUI> _gameUIComponents = new();
         

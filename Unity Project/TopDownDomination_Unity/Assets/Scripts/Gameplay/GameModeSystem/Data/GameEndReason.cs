@@ -6,6 +6,7 @@
         PlayerDied,
         GameExit,
         GameModeSuccess,
-        GameModeFail
+        GameModeFail,
+        TimeOver
     }
 }

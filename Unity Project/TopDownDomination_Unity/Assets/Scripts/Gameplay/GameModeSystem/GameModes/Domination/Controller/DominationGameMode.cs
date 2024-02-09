@@ -12,8 +12,8 @@ namespace Gameplay.GameModeSystem.GameModes.Domination.Controller
 {
     public class DominationGameMode : GameMode<DominationGameModeData>
     {
-        private List<DominationZone> _allDominationZones = new();
-        
+        public List<DominationZone> AllDominationZones { get; private set; }
+
         public event Action<DominationGameMode> OnScoreUpdated;
 
         public int DominationPoints { get; private set; }
@@ -22,7 +22,7 @@ namespace Gameplay.GameModeSystem.GameModes.Domination.Controller
         {
         }
 
-        protected override void OnGameModeStart()
+        protected override void OnInitiateGameMode()
         {
             // TODO - Get domination zones in map
             // GameController.MapContentController.DominationController.Initiate();
@@ -32,7 +32,7 @@ namespace Gameplay.GameModeSystem.GameModes.Domination.Controller
         protected override void OnGameTick(int gameDuration)
         {
             var pointsToCount = 0;
-            foreach (var dominationZone in _allDominationZones)
+            foreach (var dominationZone in AllDominationZones)
             {
                 if (dominationZone.EntityOwnerType == EntityType.Player)
                 {
@@ -45,13 +45,6 @@ namespace Gameplay.GameModeSystem.GameModes.Domination.Controller
             if (ProcessDominationPoints())
             {
                 TriggerGameEnd(GameEndReason.GameModeSuccess);
-                return;
-            }
-
-            if (ProcessGameTime())
-            {
-                TriggerGameEnd(GameEndReason.GameModeFail);
-                return;
             }
         }
 
@@ -71,17 +64,9 @@ namespace Gameplay.GameModeSystem.GameModes.Domination.Controller
             return false;
         }
 
-        private bool ProcessGameTime()
-        {
-            if (GameTime >= GameModeConfigData.GameTimeLimit)
-                return true;
-
-            return false;
-        }
-
         private void TriggerGameEnd(GameEndReason endReason)
         {
-            InvokeGameModeEnd
+            InvokeGameEnd
             (
                 new EndGameData
                 {

@@ -13,17 +13,7 @@ namespace Gameplay.GameModeSystem.GameModes.Timed.Controller
 
         protected override void OnGameTick(int gameDuration)
         {
-            if (GameTime >= GameModeConfigData.GameModeTimeLimit)
-            {
-                InvokeGameModeEnd
-                (
-                    new EndGameData
-                    {
-                        GameEndReason = GameEndReason.GameModeSuccess,
-                        GameController = this.GameController
-                    }
-                );
-            }
+            
         }
     }
 }

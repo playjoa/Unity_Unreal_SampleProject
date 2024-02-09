@@ -8,10 +8,10 @@ namespace Utils.Extensions
         
         public static string ToNiceCurrency(this int value) => value.ToString("N0");
         
-        public static string NiceTimer(this float timerCount)
+        public static string ToNiceTimer(this float timerCount)
         {
             var minutes = Mathf.FloorToInt(timerCount / 60f);
-            var seconds = Mathf.FloorToInt(timerCount - minutes * 60);
+            var seconds = Mathf.FloorToInt(timerCount - minutes * 60f);
             return $"{minutes:0}:{seconds:00}"; 
         }
         
