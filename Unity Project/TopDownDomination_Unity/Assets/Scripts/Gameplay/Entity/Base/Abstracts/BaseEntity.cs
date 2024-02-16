@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace Gameplay.Entity.Base.Abstracts
 {
-    public class BaseEntity : MonoBehaviour, IGameEntity
+    public abstract class BaseEntity : MonoBehaviour, IGameEntity
     {
         [Header("Base Components")]
         [SerializeField] private EntityHealth entityHealth;

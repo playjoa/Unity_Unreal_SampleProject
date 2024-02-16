@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91c48b2b07444aa0b58b2bfc83764d4e, type: 3}
+  m_Name: DefaultGameCameraConfigurationData
+  m_EditorClassIdentifier: 
+  playerOffSetPosition: {x: 4, y: 6.5, z: 0}
+  cameraStartRotation: {x: 60, y: -90, z: 0}
+  cameraFov: 65
+  nearClipPlane: 0.001
+  farClipPlane: 1000

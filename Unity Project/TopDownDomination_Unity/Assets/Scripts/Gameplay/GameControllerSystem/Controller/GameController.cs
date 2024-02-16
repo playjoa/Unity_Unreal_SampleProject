@@ -7,6 +7,7 @@ using Gameplay.GameControllerSystem.Base;
 using Gameplay.GameControllerSystem.Data;
 using Gameplay.GameModeSystem.Controller;
 using Gameplay.GameModeSystem.Data;
+using Gameplay.MapLoaderSystem.Controller;
 using Gameplay.PlayerInputs.Controller;
 using Gameplay.SpawnSystem.Controller;
 using Gameplay.UI.Controller;
@@ -18,6 +19,9 @@ namespace Gameplay.GameControllerSystem.Controller
     {
         public static GameController ME { get; private set; }
         
+        [Header("Base Systems")] 
+        [SerializeField] private MapLoaderController mapLoaderController;
+
         [Header("Base Systems")] 
         [SerializeField] private InputsController inputsController;
         
@@ -33,6 +37,7 @@ namespace Gameplay.GameControllerSystem.Controller
         
         public GameData GameData { get; private set; }
         
+        public MapLoaderController MapLoaderController => mapLoaderController;
         public InputsController InputsController => inputsController;
         public SpawnController SpawnController => spawnController;
         public GameCameraController GameCameraController => gameCameraController;
@@ -85,6 +90,7 @@ namespace Gameplay.GameControllerSystem.Controller
             Debug.Log("----SettingUp Initialization Order----");
             
             // Base Systems
+            QueueSystemInitialization(mapLoaderController);
             QueueSystemInitialization(inputsController);
 
             // Game Systems

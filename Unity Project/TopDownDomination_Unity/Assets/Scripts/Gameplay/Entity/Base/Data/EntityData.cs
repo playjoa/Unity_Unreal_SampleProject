@@ -1,12 +1,11 @@
-﻿using System;
-using Gameplay.Entity.Base.Components;
+﻿using Gameplay.Entity.Base.Components;
 using Gameplay.Entity.Base.EntityComponents.BaseComponents.EntityMovement;
 using UnityEngine;
 using Utils.UniqueId.Components;
 
 namespace Gameplay.Entity.Base.Data
 {
-    [CreateAssetMenu(fileName = "EntityData", menuName = "Entity/New EntityData", order = 1)]
+    [CreateAssetMenu(fileName = "New EntityData", menuName = "Entity/EntityData", order = 1)]
     public class EntityData : ScriptableObjectWithId
     {
         [Header("Meta Data")]

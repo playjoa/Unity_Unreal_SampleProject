@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using Gameplay.Entity.Base.Data;
 using Gameplay.Entity.Base.Interfaces;
 using Gameplay.GameControllerSystem.Base;
 using Gameplay.GameControllerSystem.Controller;
@@ -36,6 +37,12 @@ namespace Gameplay.SpawnSystem.Controller
         public void OnCleanUp()
         {
             
+        }
+
+        // TODO - Add Spawning Logic
+        public IGameEntity SpawnEntity(EntityData entityData, Vector3 position, Quaternion rotation)
+        {
+            return default;
         }
     }
 }

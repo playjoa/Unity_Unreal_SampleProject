@@ -6,6 +6,7 @@ using UnityEngine;
 
 namespace Gameplay.GameModeSystem.GameModes.Domination.Data
 {
+    [CreateAssetMenu(menuName = "GameSystems/GameModes/DominationGameModeData", fileName = "New DominationGameModeData")]
     public class DominationGameModeData : GameModeConfigData
     {
         [Header("Time Limit")] 
