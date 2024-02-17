@@ -2,6 +2,7 @@
 using System.Collections;
 using Gameplay.GameControllerSystem.Base;
 using Gameplay.GameControllerSystem.Controller;
+using Gameplay.MapContentSystem.Controller;
 using Gameplay.MapLoaderSystem.Data;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -15,8 +16,8 @@ namespace Gameplay.MapLoaderSystem.Controller
         public string ProgressPercentage { get; private set; }
         public float Progress { get; private set; }
 
-        public event Action<MapLoaderController> OnStartedLoadingScreen;
-        public event Action<MapLoaderController> OnFinishedLoadingScreen;
+        public event Action<MapLoaderController> OnStartedLoadingMap;
+        public event Action<MapLoaderController> OnFinishedLoadingMap;
 
         public IEnumerator Initiate(GameController gameSystemsController)
         {
@@ -25,7 +26,7 @@ namespace Gameplay.MapLoaderSystem.Controller
             Debug.Log($"----Initializing MapLoader: {CurrentLoadingMap.MapSceneName}----");
 
             var sceneOperation = SceneManager.LoadSceneAsync(CurrentLoadingMap.MapSceneName, LoadSceneMode.Additive);
-            OnStartedLoadingScreen?.Invoke(this);
+            OnStartedLoadingMap?.Invoke(this);
             while (!sceneOperation.isDone)
             {
                 var progress = ProgressClamped(sceneOperation.progress);
@@ -37,7 +38,18 @@ namespace Gameplay.MapLoaderSystem.Controller
 
             yield return new WaitForEndOfFrame();
             SceneManager.SetActiveScene(SceneManager.GetSceneByName(CurrentLoadingMap.MapSceneName));
-            OnFinishedLoadingScreen?.Invoke(this);
+            
+            OnFinishedLoadingMap?.Invoke(this);
+
+            var mapContentController = FindObjectOfType<MapContentController>();
+            if (mapContentController != null)
+            {
+                gameSystemsController.SetMapContentController(mapContentController);
+            }
+            else
+            {
+                Debug.LogWarning("Could not find MapContentController in Map. Please configure it!");
+            }
 
             Debug.Log($"----Done Initializing MapLoader----");
         }

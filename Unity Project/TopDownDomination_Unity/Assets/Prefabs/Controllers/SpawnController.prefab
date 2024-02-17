@@ -44,3 +44,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 191c312360fb4a6184de19c01e97b9e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  entityPrefabs:
+    dictionaryValues:
+    - key: 1
+      value: {fileID: 8240853207784645879, guid: 2520f040961b0f54bb298c0f7f74a1e7,
+        type: 3}
+    - key: 2
+      value: {fileID: 6454340612319304171, guid: dceff5464376a05418feeb8b464cc489,
+        type: 3}

@@ -24,9 +24,8 @@ namespace Gameplay.GameModeSystem.GameModes.Domination.Controller
 
         protected override void OnInitiateGameMode()
         {
-            // TODO - Get domination zones in map
-            // GameController.MapContentController.DominationController.Initiate();
-            // _allDominationZones = GameController.MapContentController.DominationController.Zones;
+            GameController.MapContentController.DominationController.Initiate();
+            AllDominationZones = GameController.MapContentController.DominationController.DominationZones;
         }
 
         protected override void OnGameTick(int gameDuration)

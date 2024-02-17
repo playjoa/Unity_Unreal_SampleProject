@@ -20,8 +20,8 @@ namespace Gameplay.GameModeSystem.GameModes.Domination.Components
         [Header("Components")]
         [SerializeField] private DominationCollider dominationCollider;
 
-        public Action<DominationZone> OnZoneCaptured;
-        public Action<DominationZone> OnZoneCaptureInProgress;
+        public event Action<DominationZone> OnZoneCaptured;
+        public event Action<DominationZone> OnZoneCaptureInProgress;
         
         public EntityType EntityOwnerType { get; private set; }
         public float CaptureProgress { get; private set; }
@@ -42,6 +42,8 @@ namespace Gameplay.GameModeSystem.GameModes.Domination.Components
         public void Initiate()
         {
             InitiateGuardians(zoneData.GuardiansData);
+            CaptureProgress = 1;
+            EntityOwnerType = EntityType.Enemy;
             
             dominationCollider.OnEntityEnterDominationArea += OnEntityEnterHandler;
             dominationCollider.OnEntityExitDominationArea += OnEntityExitHandler;
@@ -51,6 +53,7 @@ namespace Gameplay.GameModeSystem.GameModes.Domination.Components
 
         private void OnDestroy()
         {
+            _gameActive = false;
             dominationCollider.OnEntityEnterDominationArea += OnEntityEnterHandler;
             dominationCollider.OnEntityExitDominationArea += OnEntityExitHandler;
         }
@@ -103,7 +106,7 @@ namespace Gameplay.GameModeSystem.GameModes.Domination.Components
 
                 if (CaptureProgress >= 1f)
                 {
-                    CaptureZone();
+                    CaptureZone(EntityType.Player);
                 }
             }
             else
@@ -113,12 +116,12 @@ namespace Gameplay.GameModeSystem.GameModes.Domination.Components
             }
         }
         
-        private void CaptureZone()
+        private void CaptureZone(EntityType newOwnerEntity)
         {
-            OnZoneCaptured?.Invoke(this);
-            // Reset capture progress and any other necessary variables
+            EntityOwnerType = newOwnerEntity;
             _captureInProgress = false;
             _captureTimer = 0f;
+            OnZoneCaptured?.Invoke(this);
         }
 
         private void OnGuardianDiedHandler(HealthChangeData healthChangeData)

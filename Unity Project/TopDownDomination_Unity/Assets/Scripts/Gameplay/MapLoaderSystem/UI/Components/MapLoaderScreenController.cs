@@ -23,8 +23,8 @@ namespace Gameplay.MapLoaderSystem.Components
         
         private void Awake()
         {
-            mapLoader.OnStartedLoadingScreen += OnMapStartedLoadingHandler;
-            mapLoader.OnFinishedLoadingScreen += OnFinishedLoadingHandler;
+            mapLoader.OnStartedLoadingMap += OnMapStartedLoadingHandler;
+            mapLoader.OnFinishedLoadingMap += OnFinishedLoadingHandler;
         }
 
         private void Start()
@@ -34,8 +34,8 @@ namespace Gameplay.MapLoaderSystem.Components
 
         private void OnDestroy()
         {
-            mapLoader.OnStartedLoadingScreen -= OnMapStartedLoadingHandler;
-            mapLoader.OnFinishedLoadingScreen -= OnFinishedLoadingHandler;
+            mapLoader.OnStartedLoadingMap -= OnMapStartedLoadingHandler;
+            mapLoader.OnFinishedLoadingMap -= OnFinishedLoadingHandler;
             GameController.ME.OnGameSystemsInitialized -= OnGameInitializedHandler;
         }
 

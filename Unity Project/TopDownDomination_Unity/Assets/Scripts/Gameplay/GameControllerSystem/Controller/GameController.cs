@@ -7,10 +7,12 @@ using Gameplay.GameControllerSystem.Base;
 using Gameplay.GameControllerSystem.Data;
 using Gameplay.GameModeSystem.Controller;
 using Gameplay.GameModeSystem.Data;
+using Gameplay.MapContentSystem.Controller;
 using Gameplay.MapLoaderSystem.Controller;
 using Gameplay.PlayerInputs.Controller;
 using Gameplay.SpawnSystem.Controller;
 using Gameplay.UI.Controller;
+using GameWideSystems.GameDataSystem.Controller;
 using UnityEngine;
 
 namespace Gameplay.GameControllerSystem.Controller
@@ -35,6 +37,8 @@ namespace Gameplay.GameControllerSystem.Controller
         [Header("UI")] 
         [SerializeField] private GameUIController gameUIController;
         
+        public event Action<GameController> OnGameSystemsInitialized;
+
         public GameData GameData { get; private set; }
         
         public MapLoaderController MapLoaderController => mapLoaderController;
@@ -43,10 +47,12 @@ namespace Gameplay.GameControllerSystem.Controller
         public GameCameraController GameCameraController => gameCameraController;
         public GameModeController GameModeController => gameModeController;
         
+        public MapContentController MapContentController { get; private set; }
         public IGameEntity PlayerEntity { get; private set; }
+
+        private static GameDataController GameDataController => GameDataController.ME;
         
         private readonly List<IGameplaySystem> _gameSystems = new();
-        public event Action<GameController> OnGameSystemsInitialized;
         
         private void Awake()
         {
@@ -81,8 +87,7 @@ namespace Gameplay.GameControllerSystem.Controller
         
         private void GetGameData()
         {
-            // TODO - Get GameData
-            // GameData = GameLoaderController.ME.CurrentGameData;
+            GameData = new GameData(GameDataController.CurrentMap, GameDataController.CurrentGameMode);
         }
 
         private void SetUpSystemsInitializationOrder()
@@ -108,7 +113,12 @@ namespace Gameplay.GameControllerSystem.Controller
         {
             _gameSystems.Add(gameSystem);
         }
-        
+
+        public void SetMapContentController(MapContentController mapContentController)
+        {
+            MapContentController = mapContentController;
+        }
+
         private void OnGameModeEndedHandler(EndGameData endGameData)
         {
         }

@@ -1,13 +1,14 @@
 ﻿using Gameplay.GameControllerSystem.Controller;
 using Gameplay.GameModeSystem.Interfaces;
 using UnityEngine;
+using Utils.UniqueId.Components;
 
 namespace Gameplay.GameModeSystem.Data
 {
-    public abstract class GameModeConfigData : ScriptableObject
+    public abstract class GameModeConfigData : ScriptableObjectWithId
     {
         [Header("Timer Configuration")]
-        [SerializeField] private bool isTimedGameMode;
+        [SerializeField] private bool isTimedGameMode = true;
         [SerializeField] private int gameModeTimeLimit = 300;
         [SerializeField] private TimerMode gameModeTimerMode = TimerMode.CountToLimit;
         
