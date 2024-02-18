@@ -1,5 +1,6 @@
 ﻿using Gameplay.Entity.Base.Components;
 using Gameplay.Entity.Base.Data;
+using Gameplay.Entity.Base.EntityComponents.BaseComponents.EntityBrain.Base;
 using Gameplay.Entity.Base.EntityComponents.BaseComponents.EntityGraphics;
 using Gameplay.Entity.Base.EntityComponents.BaseComponents.EntityInteractions;
 using Gameplay.Entity.Base.EntityComponents.BaseComponents.EntityMovement;
@@ -13,6 +14,7 @@ namespace Gameplay.Entity.Base.Interfaces
         EntityType EntityType { get; }
         Transform EntityTransform { get; }
         EntityData EntityData { get; }
+        EntityBrainController EntityBrain { get; }
         EntityHealth EntityHealth { get; }
         EntityGraphicsController EntityGraphics { get; }
         EntityMovementBase EntityMovement { get; }

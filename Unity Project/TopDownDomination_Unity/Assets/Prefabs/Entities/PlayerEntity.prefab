@@ -41,9 +41,11 @@ GameObject:
   m_Component:
   - component: {fileID: 5076149006006092294}
   - component: {fileID: 8240853207784645879}
+  - component: {fileID: 1230359430606295849}
   - component: {fileID: 8526947186124919735}
   - component: {fileID: 2745154839227429920}
   - component: {fileID: 9043169089154162156}
+  - component: {fileID: 7517503944096963471}
   - component: {fileID: 5861033048749491711}
   - component: {fileID: 3794243529290882022}
   m_Layer: 6
@@ -82,9 +84,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecc4d1484b884579a579a621ce92299f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  entityBrainController: {fileID: 0}
   entityHealth: {fileID: 8526947186124919735}
   entityGraphics: {fileID: 6026111864891564963}
   entityMovement: {fileID: 2745154839227429920}
+  entityInteractions: {fileID: 7517503944096963471}
+--- !u!114 &1230359430606295849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5263653556313251293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc5139e285924740b2b613d997627010, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &8526947186124919735
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -125,6 +141,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pushPower: 2
+--- !u!114 &7517503944096963471
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5263653556313251293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42e208682327400ab3d3aca645f7708b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!143 &5861033048749491711
 CharacterController:
   m_ObjectHideFlags: 0

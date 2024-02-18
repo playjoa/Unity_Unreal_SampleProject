@@ -41,8 +41,10 @@ GameObject:
   m_Component:
   - component: {fileID: 5076149006006092294}
   - component: {fileID: 6454340612319304171}
+  - component: {fileID: 1345002653537095990}
   - component: {fileID: 8526947186124919735}
   - component: {fileID: 8048911646247187743}
+  - component: {fileID: 7501958957318448715}
   m_Layer: 6
   m_Name: EnemyEntity
   m_TagString: Untagged
@@ -79,9 +81,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d69656ae89124ebcb248210f04cac208, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  entityBrainController: {fileID: 1345002653537095990}
   entityHealth: {fileID: 8526947186124919735}
   entityGraphics: {fileID: 6026111864891564963}
   entityMovement: {fileID: 8048911646247187743}
+  entityInteractions: {fileID: 7501958957318448715}
+--- !u!114 &1345002653537095990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5263653556313251293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff786e1719d345218128b8c60321b98e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &8526947186124919735
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -107,6 +123,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   groundCheckerTransform: {fileID: 1195373292812735975}
+--- !u!114 &7501958957318448715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5263653556313251293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42e208682327400ab3d3aca645f7708b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &9156452095695377547
 GameObject:
   m_ObjectHideFlags: 0
