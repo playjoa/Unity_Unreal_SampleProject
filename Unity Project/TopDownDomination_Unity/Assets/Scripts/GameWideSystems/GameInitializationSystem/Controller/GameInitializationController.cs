@@ -5,6 +5,7 @@ using GameWideSystems.GameDataBaseSystem.Controller;
 using GameWideSystems.GameDataSystem.Controller;
 using GameWideSystems.GameInitialization.Interfaces;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Utils.Pattern;
 
 namespace GameWideSystems.GameInitialization.Controller
@@ -15,8 +16,11 @@ namespace GameWideSystems.GameInitialization.Controller
         [SerializeField] private GameDataBaseController gameDataBaseController;
         [SerializeField] private GameDataController gameDataController;
 
-        public static event Action<GameInitializationController> OnGameInitiated;
+        [Header("Scene Config.")]
+        [SerializeField] private string targetSceneToLoad = "1_Main";
+
         public static event Action<IGameWideSystem> OnGameSystemStartedLoading;
+        public static event Action<GameInitializationController> OnGameInitiated;
         
         private readonly List<IGameWideSystem> _appWideSystems = new();
         private IGameWideSystem _currentSystemToInitiate;
@@ -38,6 +42,7 @@ namespace GameWideSystems.GameInitialization.Controller
             }
 
             OnGameInitiated?.Invoke(this);
+            SceneManager.LoadScene(targetSceneToLoad);
         }
         
         public static void QuitGameApp()
