@@ -7,6 +7,7 @@ using Gameplay.GameControllerSystem.Base;
 using Gameplay.GameControllerSystem.Data;
 using Gameplay.GameModeSystem.Controller;
 using Gameplay.GameModeSystem.Data;
+using Gameplay.GameVfxSystem.Controller;
 using Gameplay.MapContentSystem.Controller;
 using Gameplay.MapLoaderSystem.Controller;
 using Gameplay.PlayerInputs.Controller;
@@ -28,6 +29,7 @@ namespace Gameplay.GameControllerSystem.Controller
         [SerializeField] private InputsController inputsController;
         
         [Header("Game Systems")] 
+        [SerializeField] private GameVfxController gameVfxController;
         [SerializeField] private SpawnController spawnController;
         [SerializeField] private GameCameraController gameCameraController;
 
@@ -43,6 +45,7 @@ namespace Gameplay.GameControllerSystem.Controller
         
         public MapLoaderController MapLoaderController => mapLoaderController;
         public InputsController InputsController => inputsController;
+        public GameVfxController GameVfxController => gameVfxController;
         public SpawnController SpawnController => spawnController;
         public GameCameraController GameCameraController => gameCameraController;
         public GameModeController GameModeController => gameModeController;
@@ -99,6 +102,7 @@ namespace Gameplay.GameControllerSystem.Controller
             QueueSystemInitialization(inputsController);
 
             // Game Systems
+            QueueSystemInitialization(gameVfxController);
             QueueSystemInitialization(spawnController);
             QueueSystemInitialization(gameCameraController);
 
