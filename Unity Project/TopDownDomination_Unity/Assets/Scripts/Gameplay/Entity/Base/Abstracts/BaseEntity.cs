@@ -2,6 +2,7 @@
 using Gameplay.Entity.Base.Components;
 using Gameplay.Entity.Base.Data;
 using Gameplay.Entity.Base.EntityComponents.BaseComponents.EntityGraphics;
+using Gameplay.Entity.Base.EntityComponents.BaseComponents.EntityInteractions;
 using Gameplay.Entity.Base.EntityComponents.BaseComponents.EntityMovement;
 using Gameplay.Entity.Base.Interfaces;
 using UnityEngine;
@@ -14,6 +15,7 @@ namespace Gameplay.Entity.Base.Abstracts
         [SerializeField] private EntityHealth entityHealth;
         [SerializeField] private EntityGraphicsController entityGraphics;
         [SerializeField] private EntityMovementBase entityMovement;
+        [SerializeField] private EntityInteractionsController entityInteractions;
 
         public bool IsActive { get; }
         public EntityType EntityType => EntityData != null ? EntityData.EntityType : EntityType.Unknown;
@@ -22,6 +24,7 @@ namespace Gameplay.Entity.Base.Abstracts
         public EntityHealth EntityHealth => entityHealth;
         public EntityGraphicsController EntityGraphics => entityGraphics;
         public EntityMovementBase EntityMovement => entityMovement;
+        public EntityInteractionsController EntityInteractions => entityInteractions;
         public Transform EntityTransform => transform;
 
         private readonly List<IEntityComponent> _baseComponents = new();
@@ -64,6 +67,7 @@ namespace Gameplay.Entity.Base.Abstracts
             _baseComponents.Add(entityHealth);
             _baseComponents.Add(entityGraphics);
             _baseComponents.Add(entityMovement);
+            _baseComponents.Add(entityInteractions);
 
             foreach (var baseComponent in _baseComponents)
             {
