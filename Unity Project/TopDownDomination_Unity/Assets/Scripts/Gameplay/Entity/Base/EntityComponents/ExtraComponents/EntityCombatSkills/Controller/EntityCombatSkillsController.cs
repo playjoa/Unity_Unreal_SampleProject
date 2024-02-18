@@ -37,7 +37,7 @@ namespace Gameplay.Entity.Base.EntityComponents.ExtraComponents.EntityCombatSkil
         {
             if (skill.CanCast) return;
 
-            StartCoroutine(TriggerSkillCoolDown(skill.CombatSkillData.CoolDown, onAfterCoolDown));
+            StartCoroutine(TriggerSkillCoolDown(skill.BaseData.CoolDown, onAfterCoolDown));
         }
 
         private IEnumerator TriggerSkillCoolDown(float coolDownTime, Action onAfter)
@@ -51,7 +51,7 @@ namespace Gameplay.Entity.Base.EntityComponents.ExtraComponents.EntityCombatSkil
             if (!CombatSkills.TryGetValue(requestPackage.SkillType, out var combatSkill)) return;
             if (!combatSkill.CanCast) return;
 
-            if (combatSkill.ExecuteSkill())
+            if (combatSkill.ExecuteSkill(requestPackage))
             {
                 OnSkillExecuted?.Invoke(combatSkill);
             }

@@ -5,9 +5,19 @@ using Gameplay.Entity.Base.Interfaces;
 
 namespace Gameplay.Entity.Base.EntityComponents.ExtraComponents.EntityCombatSkills.Abstracts
 {
+    public abstract class CombatSkill<TCombatSkillData> : CombatSkill where TCombatSkillData : CombatSkillData
+    {
+        public TCombatSkillData CombatSkillData { get; }
+
+        protected CombatSkill(TCombatSkillData data, EntityCombatSkillsController skillsController) : base(data, skillsController)
+        {
+            CombatSkillData = data;
+        }
+    }
+
     public abstract class CombatSkill
     {
-        public CombatSkillData CombatSkillData { get; }
+        public CombatSkillData BaseData { get; }
         public IGameEntity Owner { get; }
         public EntityCombatSkillsController SkillsController { get; }
 
@@ -18,12 +28,12 @@ namespace Gameplay.Entity.Base.EntityComponents.ExtraComponents.EntityCombatSkil
 
         protected CombatSkill(CombatSkillData data, EntityCombatSkillsController skillsController)
         {
-            CombatSkillData = data;
+            BaseData = data;
             SkillsController = skillsController;
             Owner = skillsController.Owner;
         }
 
-        public bool ExecuteSkill()
+        public bool ExecuteSkill(CombatSkillRequestPackage requestPackage)
         {
             if (!CanCast) return false;
 

@@ -5,6 +5,7 @@ namespace Gameplay.Entity.Base.EntityComponents.ExtraComponents.EntityCombatSkil
     public struct CombatSkillRequestPackage
     {
         public CombatSkillType SkillType;
-        public Vector3 SKillCastDirection;
+        public Vector3 CastDirection;
+        public Vector3 CastPosition;
     }
 }

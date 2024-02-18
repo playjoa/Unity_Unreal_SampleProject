@@ -30,7 +30,8 @@ namespace Gameplay.Entity.Base.EntityComponents.BaseComponents.EntityBrain.Contr
             OnEntitySkillRequest?.Invoke(new CombatSkillRequestPackage
             {
                 SkillType = CombatSkillType.Primary,
-                SKillCastDirection = Owner.EntityTransform.forward
+                CastDirection = Owner.EntityTransform.forward,
+                CastPosition = Owner.EntityTransform.position
             });
         }
         
@@ -39,7 +40,8 @@ namespace Gameplay.Entity.Base.EntityComponents.BaseComponents.EntityBrain.Contr
             OnEntitySkillRequest?.Invoke(new CombatSkillRequestPackage
             {
                 SkillType = CombatSkillType.Secondary,
-                SKillCastDirection = Owner.EntityTransform.forward
+                CastDirection = Owner.EntityTransform.forward,
+                CastPosition = Owner.EntityTransform.position
             });
         }
     }
