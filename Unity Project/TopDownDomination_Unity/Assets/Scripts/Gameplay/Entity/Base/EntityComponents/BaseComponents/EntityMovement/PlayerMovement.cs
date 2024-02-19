@@ -1,6 +1,3 @@
-using Gameplay.GameCameraSystem.Controller;
-using Gameplay.GameControllerSystem.Controller;
-using Gameplay.PlayerInputs.Controller;
 using UnityEngine;
 
 namespace Gameplay.Entity.Base.EntityComponents.BaseComponents.EntityMovement
@@ -10,12 +7,6 @@ namespace Gameplay.Entity.Base.EntityComponents.BaseComponents.EntityMovement
         [Header("Character Controller Settings")] 
         [SerializeField] private CharacterController controllerPlayer;
         [SerializeField] private CharacterControllerPhysicsInteraction characterControllerPhysics;
-
-        public override Vector3 EntityMovementDirection => PlayerMovementInCameraDirection(PlayerMovementInput);
-        
-        private static InputsController InputsController => GameController.ME.InputsController;
-        private static GameCameraController CameraController => GameController.ME.GameCameraController;
-        private static Vector2 PlayerMovementInput => InputsController.PlayerMovementInput;
 
         private Vector3 _previousHorizontalPosition;
         private Vector3 _gravityVelocity;
@@ -81,6 +72,18 @@ namespace Gameplay.Entity.Base.EntityComponents.BaseComponents.EntityMovement
 
         private void MovePlayer(Vector3 direction)
         {
+            direction *= movementData.HorizontalSpeed;
+
+            if (Grounded)
+            {
+                direction *= _currentHorizontalSprintMultiplier;
+            }
+
+            else
+            {
+                direction *= _currentVerticalSprintMultiplier;
+            }
+
             controllerPlayer.Move(direction);
         }
 
@@ -108,19 +111,6 @@ namespace Gameplay.Entity.Base.EntityComponents.BaseComponents.EntityMovement
         {
             _gravityVelocity.y += movementData.GravitySpeed * Time.deltaTime;
             MovePlayer(_gravityVelocity * Time.deltaTime);
-        }
-
-        private Vector3 PlayerMovementInCameraDirection(Vector2 playerInputValue)
-        {
-            var inputDirection = CameraController.GetRelativeInputDirectionFromCameraView(playerInputValue);
-            inputDirection *= movementData.HorizontalSpeed * Time.deltaTime;
-
-            if (Grounded)
-            {
-                return inputDirection * _currentHorizontalSprintMultiplier;
-            }
-
-            return inputDirection * _currentVerticalSprintMultiplier;
         }
     }
 }

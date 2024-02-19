@@ -17,9 +17,9 @@ namespace Gameplay.Entity.Base.EntityComponents.BaseComponents.EntityMovement
         public virtual bool GravityActive => movementData.UseGravity;
         public bool Grounded { get; protected set; }
         public bool Sprinting { get; protected set; }
-        
-        public virtual Vector3 EntityMovementDirection => Vector3.zero;
-        public virtual Vector3 EntityGadgetAimDirection => Vector3.zero;
+
+        public virtual Vector3 EntityMovementDirection => Owner.EntityBrain.MoveDirection;
+        public virtual Vector3 EntityGadgetAimDirection => Owner.EntityBrain.AimDirection;
 
         public IGameEntity Owner { get; private set; }
         
