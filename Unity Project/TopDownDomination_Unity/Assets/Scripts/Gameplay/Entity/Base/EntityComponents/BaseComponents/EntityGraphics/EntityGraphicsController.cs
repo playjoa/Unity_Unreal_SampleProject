@@ -9,10 +9,11 @@ namespace Gameplay.Entity.Base.EntityComponents.BaseComponents.EntityGraphics
     {
         [Header("Graphics Holders")]
         [SerializeField] protected Transform entityGraphicsHolder;
-        
+
+        public Animator EntityAnimator { get; private set; }
         public Transform EntityGraphicsHolder => entityGraphicsHolder;
         
-        protected GameObject _entityGraphicsView;
+        private GameObject _entityGraphicsView;
         
         protected override void OnInitiate(IGameEntity owner)
         {
@@ -29,6 +30,10 @@ namespace Gameplay.Entity.Base.EntityComponents.BaseComponents.EntityGraphics
             if (Owner.EntityData.EntityGraphicView == null) return;
 
             _entityGraphicsView = Instantiate(Owner.EntityData.EntityGraphicView, entityGraphicsHolder);
+            if (_entityGraphicsView.TryGetComponent<Animator>(out var entityAnimator))
+            {
+                EntityAnimator = entityAnimator;
+            }
         }
         
         private void SetUpScales(EntityData entityData)

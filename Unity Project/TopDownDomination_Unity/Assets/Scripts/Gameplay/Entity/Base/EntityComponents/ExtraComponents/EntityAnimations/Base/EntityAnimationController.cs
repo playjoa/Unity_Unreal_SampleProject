@@ -1,31 +1,48 @@
 ﻿using Gameplay.Entity.Base.Abstracts;
+using Gameplay.Entity.Base.Interfaces;
 using UnityEngine;
 
 namespace Gameplay.Entity.Base.EntityComponents.ExtraComponents.EntityAnimations.Base
 {
     public abstract class EntityAnimationController : BaseEntityExtraComponent
     {
-        [Header("Target Animator")]
-        [SerializeField] protected Animator entityAnimator;
+        private Animator _entityAnimator;
+        private bool _hasAnimator;
+        
+        protected override void OnInitiate(IGameEntity owner)
+        {
+            if (owner.EntityGraphics.EntityAnimator == null) return;
+            
+            _entityAnimator = owner.EntityGraphics.EntityAnimator;
+            _hasAnimator = true;
+        }
 
         protected void SetAnimatorBool(int animHash, bool value)
         {
-            entityAnimator.SetBool(animHash, value);
+            if (!_hasAnimator) return;
+            
+            _entityAnimator.SetBool(animHash, value);
         }
         
         protected void SetAnimatorFloat(int animHash, float value)
         {
-            entityAnimator.SetFloat(animHash, value);
+            if (!_hasAnimator) return;
+            
+            _entityAnimator.SetFloat(animHash, value);
         }
         
         protected void SetAnimatorTrigger(int animHash)
         {
-            entityAnimator.SetTrigger(animHash);
+            if (!_hasAnimator) return;
+            
+            _entityAnimator.SetTrigger(animHash);
         }
         
         protected void ResetAnimatorTrigger(int animHash)
         {
-            entityAnimator.ResetTrigger(animHash);
+            if (!_hasAnimator) return;
+            
+            _entityAnimator.ResetTrigger(animHash);
         }
     }
 }

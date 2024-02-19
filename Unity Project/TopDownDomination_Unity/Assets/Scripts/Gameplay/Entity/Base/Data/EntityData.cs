@@ -1,5 +1,6 @@
 ﻿using Gameplay.Entity.Base.Components;
 using Gameplay.Entity.Base.EntityComponents.BaseComponents.EntityMovement;
+using Gameplay.Entity.Base.EntityComponents.ExtraComponents.EntityCombatSkills.Abstracts;
 using UnityEngine;
 using Utils.UniqueId.Components;
 
@@ -22,7 +23,10 @@ namespace Gameplay.Entity.Base.Data
         [Header("Base Components Config.")]
         [SerializeField] private HealthData healthData;
         [SerializeField] private MovementData movementData;
-        
+
+        [Header("Combat Skills Data")] 
+        [SerializeField] private CombatSkillData primarySkillData;
+        [SerializeField] private CombatSkillData secondarySkillData;
         
         public string EntityName => entityName;
         public Sprite EntityIcon => entityIcon;
@@ -34,5 +38,8 @@ namespace Gameplay.Entity.Base.Data
         
         public HealthData HealthData => healthData;
         public MovementData MovementData => movementData;
+        
+        public CombatSkillData PrimarySkillData => primarySkillData;
+        public CombatSkillData SecondarySkillData => secondarySkillData;
     }
 }

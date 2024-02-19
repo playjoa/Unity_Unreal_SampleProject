@@ -6,6 +6,7 @@ using Gameplay.Entity.Base.Data;
 using Gameplay.Entity.Base.EntityComponents.ExtraComponents.EntityCombatSkills.Abstracts;
 using Gameplay.Entity.Base.EntityComponents.ExtraComponents.EntityCombatSkills.Data;
 using Gameplay.Entity.Base.Interfaces;
+using Gameplay.Entity.Base.Utils;
 using UnityEngine;
 
 namespace Gameplay.Entity.Base.EntityComponents.ExtraComponents.EntityCombatSkills.Controller
@@ -30,7 +31,11 @@ namespace Gameplay.Entity.Base.EntityComponents.ExtraComponents.EntityCombatSkil
 
         private void CreateCombatSkills(EntityData entityData)
         {
-            CombatSkills = new Dictionary<CombatSkillType, CombatSkill>();
+            CombatSkills = new Dictionary<CombatSkillType, CombatSkill>
+            {
+                { CombatSkillType.Primary, entityData.GetPrimaryCombatSkill(this) },
+                { CombatSkillType.Secondary, entityData.GetSecondaryCombatSkill(this) }
+            };
         }
 
         public void TriggerSkillCooldown(CombatSkill skill, Action onAfterCoolDown)

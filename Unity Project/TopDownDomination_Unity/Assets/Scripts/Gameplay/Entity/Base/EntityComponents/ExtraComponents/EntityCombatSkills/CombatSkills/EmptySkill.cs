@@ -6,11 +6,11 @@ namespace Gameplay.Entity.Base.EntityComponents.ExtraComponents.EntityCombatSkil
 {
     public class EmptySkill : CombatSkill
     {
-        public EmptySkill(CombatSkillData data, EntityCombatSkillsController skillsController) : base(data, skillsController)
+        public EmptySkill(EntityCombatSkillsController skillsController) : base(default, skillsController)
         {
         }
 
-        protected override void SkillBehaviour()
+        protected override void SkillBehaviour(CombatSkillRequestPackage requestPackage)
         {
             
         }

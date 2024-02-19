@@ -1,4 +1,6 @@
 using Gameplay.Entity.Base.EntityComponents.BaseComponents.EntityInteractions.Base;
+using Gameplay.Entity.Base.EntityComponents.ExtraComponents.EntityCombatSkills.Controller;
+using Gameplay.Entity.Base.EntityComponents.ExtraComponents.EntityCombatSkills.Data;
 using UnityEngine;
 using Utils.UniqueId.Components;
 
@@ -10,6 +12,7 @@ namespace Gameplay.Entity.Base.EntityComponents.ExtraComponents.EntityCombatSkil
         [Header("Meta Data")] 
         [SerializeField] private string skillName = "";
         [SerializeField] private Sprite skillIcon;
+        [SerializeField] private CombatSkillType skillType;
 
         [Header("Skill Config. Data")] 
         [SerializeField] private float coolDown = 5f;
@@ -19,9 +22,12 @@ namespace Gameplay.Entity.Base.EntityComponents.ExtraComponents.EntityCombatSkil
 
         public string SkillName => skillName;
         public Sprite SkillIcon => skillIcon;
+        public CombatSkillType SkillType => skillType;
 
         public float CoolDown => coolDown;
         
         public EntityInteractionData InteractionData => interactionData;
+
+        public abstract CombatSkill GenerateCombatSkill(EntityCombatSkillsController skillsController);
     }
 }

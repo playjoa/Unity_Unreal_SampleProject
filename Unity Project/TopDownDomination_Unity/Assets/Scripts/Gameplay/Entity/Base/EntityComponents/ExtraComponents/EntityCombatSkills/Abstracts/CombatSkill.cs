@@ -38,7 +38,7 @@ namespace Gameplay.Entity.Base.EntityComponents.ExtraComponents.EntityCombatSkil
             if (!CanCast) return false;
 
             CanCast = false;
-            SkillBehaviour();
+            SkillBehaviour(requestPackage);
             SkillsController.TriggerSkillCooldown(this, ResetCooldown);
             OnSkillExecuted?.Invoke(this);
 
@@ -51,6 +51,6 @@ namespace Gameplay.Entity.Base.EntityComponents.ExtraComponents.EntityCombatSkil
             OnSkillCooldownReset?.Invoke(this);
         }
 
-        protected abstract void SkillBehaviour();
+        protected abstract void SkillBehaviour(CombatSkillRequestPackage requestPackage);
     }
 }
