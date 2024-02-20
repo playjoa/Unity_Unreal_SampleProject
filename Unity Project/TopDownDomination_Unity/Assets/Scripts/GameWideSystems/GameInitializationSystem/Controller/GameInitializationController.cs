@@ -6,7 +6,7 @@ using GameWideSystems.GameDataSystem.Controller;
 using GameWideSystems.GameInitialization.Interfaces;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using Utils.Pattern;
+using Utils.Patterns;
 
 namespace GameWideSystems.GameInitialization.Controller
 {

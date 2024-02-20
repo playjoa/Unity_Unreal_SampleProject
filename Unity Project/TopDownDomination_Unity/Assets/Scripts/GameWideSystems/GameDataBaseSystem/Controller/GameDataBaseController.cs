@@ -9,7 +9,7 @@ using GameWideSystems.GameDataBaseSystem.Interfaces;
 using GameWideSystems.GameInitialization.Controller;
 using GameWideSystems.GameInitialization.Interfaces;
 using UnityEngine;
-using Utils.Pattern;
+using Utils.Patterns;
 
 namespace GameWideSystems.GameDataBaseSystem.Controller
 {

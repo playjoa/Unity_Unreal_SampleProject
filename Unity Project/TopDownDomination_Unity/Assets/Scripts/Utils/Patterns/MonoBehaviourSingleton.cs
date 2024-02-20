@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Utils.Pattern
+namespace Utils.Patterns
 {
     public abstract class MonoBehaviourSingleton<TMonoBehaviour> : MonoBehaviour where TMonoBehaviour : MonoBehaviour
     {
@@ -20,9 +20,6 @@ namespace Utils.Pattern
             }
         }
 
-        protected virtual void OnAwaken()
-        {
-            
-        }
+        protected virtual void OnAwaken() { }
     }
 }
