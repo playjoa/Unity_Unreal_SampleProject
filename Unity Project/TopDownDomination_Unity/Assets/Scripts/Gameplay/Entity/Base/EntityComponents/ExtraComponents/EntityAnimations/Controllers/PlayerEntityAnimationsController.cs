@@ -8,7 +8,7 @@ using Gameplay.Entity.Base.Interfaces;
 
 namespace Gameplay.Entity.Base.EntityComponents.ExtraComponents.EntityAnimations.Controllers
 {
-    public class PlayerEntityAnimatorController : EntityAnimationController
+    public class PlayerEntityAnimationsController : EntityAnimationController
     {
         private EntityCombatSkillsController _entitySkillsController;
         

@@ -25,7 +25,7 @@ MonoBehaviour:
     maxHealthAmount: 150
   movementData:
     canMove: 1
-    horizontalSpeed: 4
+    horizontalSpeed: 2
     rotateSpeed: 10
     sprintHorizontalMultiplier: 2
     sprintVerticalMultiplier: 1.5

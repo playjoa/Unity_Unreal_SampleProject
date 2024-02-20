@@ -62,7 +62,7 @@ namespace Gameplay.Entity.Base.EntityComponents.BaseComponents.EntityMovement
             var speed = distance / Time.deltaTime;
             _previousHorizontalPosition = currentHorizontalPosition;
 
-            return Mathf.Clamp01(speed / _maxSpeed);
+            return Mathf.Clamp01(speed / movementData.HorizontalSpeed);
         }
 
         protected override void OnUpdate()
