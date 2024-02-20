@@ -46,7 +46,7 @@ namespace Gameplay.GameCameraSystem.Controller
 
         public void OnCleanUp()
         {
-            throw new System.NotImplementedException();
+            
         }
         
         public void SetTargetToEntity(IGameEntity gameEntity)

@@ -29,11 +29,11 @@ namespace Gameplay.Entity.Base.EntityComponents.BaseComponents.EntityBrain.Contr
             InputsController.OnPrimaryFire -= OnPlayerTriggeredPrimaryHandler;
             InputsController.OnStartSecondaryFire -= OnPlayerTriggeredSecondaryHandler;
         }
-        
+
         private Vector3 PlayerMovementInCameraDirection(Vector2 playerInputValue)
         {
             var inputDirection = CameraController.GetRelativeInputDirectionFromCameraView(playerInputValue);
-             return inputDirection * Time.deltaTime;
+            return inputDirection * Time.deltaTime;
         }
 
         private void OnPlayerTriggeredPrimaryHandler()

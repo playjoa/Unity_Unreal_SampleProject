@@ -19,12 +19,16 @@ namespace Gameplay.Entity.Base.EntityComponents.ExtraComponents.EntityInteractor
         
         protected override void OnInitiate(IGameEntity owner)
         {
+            if (interactableFinder == null) return;
+            
             interactableFinder.OnTriggerEnterInteractable += OnInteractableTriggerEnterHandler;
             interactableFinder.OnTriggerExitInteractable += OnInteractableTriggerExitHandler;
         }
 
         protected override void OnClean()
         {
+            if (interactableFinder == null) return;
+            
             interactableFinder.OnTriggerEnterInteractable -= OnInteractableTriggerEnterHandler;
             interactableFinder.OnTriggerExitInteractable -= OnInteractableTriggerExitHandler;
         }

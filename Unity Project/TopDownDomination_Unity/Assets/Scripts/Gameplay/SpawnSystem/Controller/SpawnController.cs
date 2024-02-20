@@ -17,8 +17,6 @@ namespace Gameplay.SpawnSystem.Controller
     {
         [Header("Prefab Models")] 
         [SerializeField] private SerializableDictio<EntityType, BaseEntity> entityPrefabs;
-        
-        public IGameEntity PlayerEntity { get; private set; }
 
         private GameDataController GameData => GameDataController.ME;
 
@@ -26,24 +24,26 @@ namespace Gameplay.SpawnSystem.Controller
         {
             Debug.Log($"----Initializing SpawnController----");
             entityPrefabs.Initiate();
+            
             yield return true;
-            SpawnPlayer(gameController.MapContentController.PlayerSpawnPoints);
+            var spawnedPlayer = SpawnPlayer(gameController.MapContentController.PlayerSpawnPoints);
+            gameController.SetPlayerEntity(spawnedPlayer);
             
             Debug.Log($"----Done Initializing SpawnController----");
         }
-        
+
         public void OnCleanUp()
         {
             
         }
 
-        private void SpawnPlayer(List<SpawnPoint> spawnPoints)
+        private IGameEntity SpawnPlayer(List<SpawnPoint> spawnPoints)
         {
             var randomPlayerSpawn = spawnPoints.RandomElement();
             var spawnPos = randomPlayerSpawn.GetSpawnPosition();
 
             var playerUnit = SpawnEntity(GameData.CurrentPlayerEntityData, spawnPos, Quaternion.identity);
-            PlayerEntity = playerUnit;
+            return playerUnit;
         }
 
         public IGameEntity SpawnEntity(EntityData entityData, Vector3 position, Quaternion rotation)

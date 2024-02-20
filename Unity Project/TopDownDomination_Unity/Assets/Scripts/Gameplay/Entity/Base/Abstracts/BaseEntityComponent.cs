@@ -10,7 +10,7 @@ namespace Gameplay.Entity.Base.Abstracts
         public void Initiate(IGameEntity owner)
         {
             Owner = owner;
-            OnInitiate(owner);
+            OnInitiate(Owner);
         }
 
         public void ReviveComponent()

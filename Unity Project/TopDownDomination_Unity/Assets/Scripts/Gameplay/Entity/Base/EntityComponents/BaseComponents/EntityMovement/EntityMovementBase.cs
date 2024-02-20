@@ -19,9 +19,7 @@ namespace Gameplay.Entity.Base.EntityComponents.BaseComponents.EntityMovement
         public bool Sprinting { get; protected set; }
 
         public virtual Vector3 EntityMovementDirection => Owner.EntityBrain.MoveDirection;
-        public virtual Vector3 EntityGadgetAimDirection => Owner.EntityBrain.AimDirection;
-
-        public IGameEntity Owner { get; private set; }
+        public virtual Vector3 EntityAimDirection => Owner.EntityBrain.AimDirection;
         
         protected MovementData movementData;
         
@@ -30,6 +28,7 @@ namespace Gameplay.Entity.Base.EntityComponents.BaseComponents.EntityMovement
         protected override void OnInitiate(IGameEntity owner)
         {
             movementData = owner.EntityData.MovementData;
+            MovementActive = movementData.CanMove;
         }
 
         public void ReviveComponent(IGameEntity reviver)
@@ -93,20 +92,12 @@ namespace Gameplay.Entity.Base.EntityComponents.BaseComponents.EntityMovement
             if (!RotationActive) return;
             if (Owner.EntityHealth.IsDead) return;
 
-            var lookDirection = GetUnitAimDirection();
+            var lookDirection = EntityAimDirection;
             var lookRotation = Quaternion.LookRotation(lookDirection);
             var slerpRotation = Quaternion.Slerp(Owner.EntityGraphics.EntityGraphicsHolder.rotation, lookRotation,
                 Time.deltaTime * movementData.RotateSpeed);
 
             Owner.EntityGraphics.EntityGraphicsHolder.rotation = slerpRotation;
-        }
-
-        // TODO - Get aim rotation
-        private Vector3 GetUnitAimDirection()
-        {
-            return Vector3.zero;
-            /*var aimDirection = Owner.EntityWeaponController.EntityTargetFinder.AimDirection;
-            return new Vector3(aimDirection.x, 0, aimDirection.y);*/
         }
     }
 }

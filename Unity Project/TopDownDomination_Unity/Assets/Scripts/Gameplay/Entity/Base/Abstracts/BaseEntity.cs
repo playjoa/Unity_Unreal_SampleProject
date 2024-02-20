@@ -19,7 +19,7 @@ namespace Gameplay.Entity.Base.Abstracts
         [SerializeField] private EntityMovementBase entityMovement;
         [SerializeField] private EntityInteractionsController entityInteractions;
 
-        public bool IsActive { get; }
+        public bool IsActive => !entityHealth.IsDead && gameObject.activeSelf;
         public EntityType EntityType => EntityData != null ? EntityData.EntityType : EntityType.Unknown;
         
         public EntityData EntityData { get; private set; }
@@ -36,6 +36,8 @@ namespace Gameplay.Entity.Base.Abstracts
         
         public void Initiate(EntityData entityData)
         {
+            EntityData = entityData;
+            
             InitiateBaseComponents();
             InitiateExtraComponents();
         }
@@ -68,6 +70,7 @@ namespace Gameplay.Entity.Base.Abstracts
         
         private void InitiateBaseComponents()
         {
+            _baseComponents.Add(entityBrainController);
             _baseComponents.Add(entityHealth);
             _baseComponents.Add(entityGraphics);
             _baseComponents.Add(entityMovement);

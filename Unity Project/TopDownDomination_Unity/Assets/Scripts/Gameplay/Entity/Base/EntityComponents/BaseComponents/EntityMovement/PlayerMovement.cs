@@ -1,3 +1,4 @@
+using Gameplay.Entity.Base.Interfaces;
 using UnityEngine;
 
 namespace Gameplay.Entity.Base.EntityComponents.BaseComponents.EntityMovement
@@ -14,7 +15,13 @@ namespace Gameplay.Entity.Base.EntityComponents.BaseComponents.EntityMovement
         private float _maxSpeed;
         private float _currentHorizontalSprintMultiplier = MovementData.DEFAULT_SPRINT_MULTIPLIER;
         private float _currentVerticalSprintMultiplier = MovementData.DEFAULT_SPRINT_MULTIPLIER;
-        
+
+        protected override void OnInitiate(IGameEntity owner)
+        {
+            base.OnInitiate(owner);
+            Grounded = IsGroundedCheck();
+        }
+
         protected override void OnFixedUpdate()
         {
             GetGroundedState();

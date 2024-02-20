@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b401dd029ae43388b9e0ce60a249717, type: 3}
+  m_Name: PlayerProjectileSkillData
+  m_EditorClassIdentifier: 
+  id: b9c6559c-2b37-463e-8139-82fd674b1264
+  skillName: FireBall
+  skillIcon: {fileID: 0}
+  skillType: 0
+  coolDown: 1
+  interactionData: {fileID: 11400000, guid: 4d8e706270e1a6645b3dfbfbeafd36cc, type: 2}
+  projectilePrefab: {fileID: 0}
+  projectileVelocity: 150
+  projectileDistance: 10
+  projectileStartOffSet: {x: 0, y: 1, z: 0}
+  targetsHitEntities: 02000000
+  targetsAvoidEntities: 01000000

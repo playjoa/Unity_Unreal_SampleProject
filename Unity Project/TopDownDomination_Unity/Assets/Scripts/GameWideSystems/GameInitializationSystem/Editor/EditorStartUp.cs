@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace GameWideSystems.GameInitializationSystem.Editor
@@ -7,6 +8,11 @@ namespace GameWideSystems.GameInitializationSystem.Editor
     {
         private const string STARTUP_SCENE_NAME = "0_StartUp";
         private const int STARTUP_SCENE_INDEX = 0;
+
+        private static readonly List<string> _utilityScenes = new List<string>
+        {
+            "ScreenShotScene"
+        };
         
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         public static void OnStartUpEditor()
@@ -14,6 +20,8 @@ namespace GameWideSystems.GameInitializationSystem.Editor
             if (!Application.isEditor) return;
             
             var currentScene = SceneManager.GetActiveScene();
+            
+            if (_utilityScenes.Contains(currentScene.name)) return;
             if (currentScene.buildIndex == STARTUP_SCENE_INDEX) return;
             
             Debug.Log("Trying to play game with scene: " + currentScene.name + ". Loading StartUpScene!");

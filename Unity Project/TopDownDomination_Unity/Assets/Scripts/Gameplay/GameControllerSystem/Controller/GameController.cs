@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Gameplay.Entity.Base.Data;
 using Gameplay.Entity.Base.Interfaces;
 using Gameplay.GameCameraSystem.Controller;
 using Gameplay.GameControllerSystem.Base;
@@ -29,8 +30,8 @@ namespace Gameplay.GameControllerSystem.Controller
         [SerializeField] private InputsController inputsController;
         
         [Header("Game Systems")] 
-        [SerializeField] private GameVfxController gameVfxController;
         [SerializeField] private SpawnController spawnController;
+        [SerializeField] private GameVfxController gameVfxController;
         [SerializeField] private GameCameraController gameCameraController;
 
         [Header("Game Mode")] 
@@ -45,8 +46,8 @@ namespace Gameplay.GameControllerSystem.Controller
         
         public MapLoaderController MapLoaderController => mapLoaderController;
         public InputsController InputsController => inputsController;
-        public GameVfxController GameVfxController => gameVfxController;
         public SpawnController SpawnController => spawnController;
+        public GameVfxController GameVfxController => gameVfxController;
         public GameCameraController GameCameraController => gameCameraController;
         public GameModeController GameModeController => gameModeController;
         
@@ -102,8 +103,8 @@ namespace Gameplay.GameControllerSystem.Controller
             QueueSystemInitialization(inputsController);
 
             // Game Systems
-            QueueSystemInitialization(gameVfxController);
             QueueSystemInitialization(spawnController);
+            QueueSystemInitialization(gameVfxController);
             QueueSystemInitialization(gameCameraController);
 
             // Game Mode Systems
@@ -121,6 +122,16 @@ namespace Gameplay.GameControllerSystem.Controller
         public void SetMapContentController(MapContentController mapContentController)
         {
             MapContentController = mapContentController;
+        }
+        
+        public void SetPlayerEntity(IGameEntity playerEntity)
+        {
+            if (playerEntity.EntityData.EntityType != EntityType.Player)
+            {
+                Debug.LogWarning("Trying to register non Player Entity to player!");
+            }
+
+            PlayerEntity = playerEntity;
         }
 
         private void OnGameModeEndedHandler(EndGameData endGameData)

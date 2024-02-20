@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using Gameplay.Entity.Base.Data;
 using Gameplay.GameModeSystem.Data;
 using Gameplay.MapLoaderSystem.Data;
@@ -20,6 +21,10 @@ namespace GameWideSystems.GameDataSystem.Controller
         [SerializeField] private EntityData defaultPlayerEntity;
         
         public string AppSystemName => "Game Data";
+        
+        public event Action<MapData> OnCurrentMapSaved;
+        public event Action<GameModeConfigData> OnCurrentGameModeSaved;
+        public event Action<EntityData> OnCurrentPlayerEntityDataSaved;
         
         public MapData CurrentMap { get; private set; }
         public GameModeConfigData CurrentGameMode { get; private set; }
@@ -56,7 +61,7 @@ namespace GameWideSystems.GameDataSystem.Controller
 
         private void RetrieveDataItems()
         {
-            if (DataBase.MapsDataBase.TryGetDataItem(_saveDataController.GetSavedGameModeId(), out var mapData))
+            if (DataBase.MapsDataBase.TryGetDataItem(_saveDataController.GetSavedMapDataId(), out var mapData))
             {
                 CurrentMap = mapData;
             }
@@ -79,6 +84,7 @@ namespace GameWideSystems.GameDataSystem.Controller
             
             CurrentGameMode = gameModeData;
             _saveDataController.SaveGameModeId(gameModeData);
+            OnCurrentGameModeSaved?.Invoke(gameModeData);
         }
         
         public void SetMapData(MapData mapData)
@@ -88,9 +94,10 @@ namespace GameWideSystems.GameDataSystem.Controller
             
             CurrentMap = mapData;
             _saveDataController.SaveMapId(mapData);
+            OnCurrentMapSaved?.Invoke(mapData);
         }
         
-        public void SetEntityData(EntityData playerEntityData)
+        public void SetPlayerEntityData(EntityData playerEntityData)
         {
             if (playerEntityData == null) return;
             if (CurrentPlayerEntityData.Id == playerEntityData.Id) return;
@@ -98,6 +105,7 @@ namespace GameWideSystems.GameDataSystem.Controller
             
             CurrentPlayerEntityData = playerEntityData;
             _saveDataController.SavePlayerEntityId(playerEntityData);
+            OnCurrentPlayerEntityDataSaved?.Invoke(playerEntityData);
         }
     }
 }

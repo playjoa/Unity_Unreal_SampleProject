@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8526074097eb4e2cbe3159a21192b4b9, type: 3}
+  m_Name: PlayerFemaleMage
+  m_EditorClassIdentifier: 
+  id: 872f2095-3044-4769-88bd-4fd6b658366d
+  entityName: Female Mage
+  entityIcon: {fileID: 21300000, guid: e2301bcd4cd3a7a488a9ccfccb6fc84f, type: 3}
+  entityGraphicView: {fileID: 1249064352584784, guid: 8dbb22b9d53a7664b8619d4c6888d92f,
+    type: 3}
+  entityScale: {x: 1, y: 1, z: 1}
+  entityType: 1
+  healthData:
+    isInvulnerable: 0
+    startHealthAmount: 100
+    maxHealthAmount: 100
+  movementData:
+    canMove: 1
+    horizontalSpeed: 8
+    rotateSpeed: 10
+    sprintHorizontalMultiplier: 2
+    sprintVerticalMultiplier: 1.5
+    useGravity: 1
+    gravitySpeed: -10
+    groundMask:
+      serializedVersion: 2
+      m_Bits: 0
+    groundDistance: 0.5
+  primarySkillData: {fileID: 11400000, guid: defa3e2a3433c854ea52429780ba43bd, type: 2}
+  secondarySkillData: {fileID: 11400000, guid: 8b73e4cb7ca1c514b87584329c8a400b, type: 2}

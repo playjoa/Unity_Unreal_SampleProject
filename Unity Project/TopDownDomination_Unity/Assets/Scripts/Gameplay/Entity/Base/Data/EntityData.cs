@@ -19,10 +19,10 @@ namespace Gameplay.Entity.Base.Data
         
         [Header("Entity Config.")]
         [SerializeField] private EntityType entityType;
-        
+
         [Header("Base Components Config.")]
-        [SerializeField] private HealthData healthData;
-        [SerializeField] private MovementData movementData;
+        [SerializeField] private HealthData healthData = new HealthData();
+        [SerializeField] private MovementData movementData = new MovementData();
 
         [Header("Combat Skills Data")] 
         [SerializeField] private CombatSkillData primarySkillData;
