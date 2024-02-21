@@ -15,6 +15,8 @@ MonoBehaviour:
   id: 872f2095-3044-4769-88bd-4fd6b658366d
   entityName: Female Mage
   entityIcon: {fileID: 21300000, guid: e2301bcd4cd3a7a488a9ccfccb6fc84f, type: 3}
+  damageStatValue: 3
+  speedStatValue: 8
   entityGraphicView: {fileID: 1249064352584784, guid: 8dbb22b9d53a7664b8619d4c6888d92f,
     type: 3}
   entityScale: {x: 1, y: 1, z: 1}

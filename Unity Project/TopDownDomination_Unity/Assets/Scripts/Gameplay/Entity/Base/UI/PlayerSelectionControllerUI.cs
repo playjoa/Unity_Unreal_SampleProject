@@ -56,12 +56,12 @@ namespace Gameplay.Entity.Base.UI
 
         private void OnPlayerOptionSelectedHandler(PlayerEntityOptionUI entityOptionUI)
         {
-            if (CurrentSelectedPlayerEntity.Id.Equals(entityOptionUI.DisplayingMapData.Id)) return;
+            if (CurrentSelectedPlayerEntity.Id.Equals(entityOptionUI.DisplayingEntityData.Id)) return;
             
             _currentOptionSelected.SetSelected(false);
             _currentOptionSelected = entityOptionUI;
             _currentOptionSelected.SetSelected(true);
-            GameData.SetPlayerEntityData(entityOptionUI.DisplayingMapData);
+            GameData.SetPlayerEntityData(entityOptionUI.DisplayingEntityData);
         }
     }
 }

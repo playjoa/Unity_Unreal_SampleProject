@@ -1,7 +1,6 @@
 using System;
 using Gameplay.Entity.Base.Data;
 using Gameplay.UI.Data;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,10 +8,11 @@ namespace Gameplay.Entity.Base.UI
 {
     public class PlayerEntityOptionUI : MonoBehaviour
     {
-        [Header("View Components")] 
-        [SerializeField] private Image playerIconImage;
+        [Header("Feedback Components")] 
         [SerializeField] private Image playerSelectionImage;
-        [SerializeField] private TextMeshProUGUI playerNameTMP;
+        
+        [Header("View Components")] 
+        [SerializeField] private EntityViewComponent[] entityViewComponents = Array.Empty<EntityViewComponent>();
 
         [Header("Interaction Components")] 
         [SerializeField] private Button playerSelectButton;
@@ -22,14 +22,16 @@ namespace Gameplay.Entity.Base.UI
 
         public event Action<PlayerEntityOptionUI> OnPlayerEntityOptionSelected;
 
-        public EntityData DisplayingMapData { get; private set; }
+        public EntityData DisplayingEntityData { get; private set; }
 
-        public void Initiate(EntityData mapData)
+        public void Initiate(EntityData entityData)
         {
-            DisplayingMapData = mapData;
-            
-            SetMapIconImage(DisplayingMapData);
-            SetMapNameText(DisplayingMapData);
+            DisplayingEntityData = entityData;
+
+            foreach (var entityViewComponent in entityViewComponents)
+            {
+                entityViewComponent.Initiate(entityData);
+            }
             
             playerSelectButton.onClick.AddListener(OnPLayerSelectClickHandler);
         }
@@ -38,17 +40,14 @@ namespace Gameplay.Entity.Base.UI
         {
             playerSelectButton.onClick.RemoveListener(OnPLayerSelectClickHandler);
         }
-
-        private void SetMapIconImage(EntityData mapData)
+        
+        public void UpdateChildModules()
         {
-            playerIconImage.overrideSprite = mapData.EntityIcon;
-        }
+            if (!Application.isEditor) return;
 
-        private void SetMapNameText(EntityData mapData)
-        {
-            playerNameTMP.text = mapData.EntityName;
+            entityViewComponents = GetComponentsInChildren<EntityViewComponent>();
         }
-
+        
         public void SetSelected(bool value)
         {
             playerSelectionImage.color = value ? uiColorsData.selectedUIColor : uiColorsData.notSelectedUIColor;

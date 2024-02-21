@@ -1,16 +1,16 @@
 ﻿using UnityEditor;
 using UnityEngine;
 
-namespace Gameplay.GameModeSystem.UI
+namespace Gameplay.Entity.Base.UI
 {
-    [CustomEditor(typeof(GameModeUIController))]
-    public class GameModeUIControllerEditor : Editor
+    [CustomEditor(typeof(PlayerEntityOptionUI))]
+    public class PlayerEntityOptionUIEditor : Editor
     {
         public override void OnInspectorGUI()
         {
             base.OnInspectorGUI();
 
-            var uiHealthController = (GameModeUIController)target;
+            var uiHealthController = (PlayerEntityOptionUI)target;
             if (GUILayout.Button("Update Child Modules (Editor Only)"))
             {
                 uiHealthController.UpdateChildModules();

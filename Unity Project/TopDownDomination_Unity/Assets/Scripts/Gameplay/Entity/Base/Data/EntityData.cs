@@ -12,7 +12,11 @@ namespace Gameplay.Entity.Base.Data
         [Header("Meta Data")]
         [SerializeField] private string entityName;
         [SerializeField] private Sprite entityIcon;
-
+        
+        [Header("Entity Stats")]
+        [SerializeField] [Range(0, 10)] private int damageStatValue = 5;
+        [SerializeField] [Range(0, 10)] private int speedStatValue = 5;
+        
         [Header("Entity View")]
         [SerializeField] private GameObject entityGraphicView;
         [SerializeField] private Vector3 entityScale = Vector3.one;
@@ -30,6 +34,9 @@ namespace Gameplay.Entity.Base.Data
         
         public string EntityName => entityName;
         public Sprite EntityIcon => entityIcon;
+        
+        public int DamageStatValue => damageStatValue;
+        public int SpeedStatValue => speedStatValue;
         
         public GameObject EntityGraphicView => entityGraphicView;
         public Vector3 EntityScale => entityScale;
