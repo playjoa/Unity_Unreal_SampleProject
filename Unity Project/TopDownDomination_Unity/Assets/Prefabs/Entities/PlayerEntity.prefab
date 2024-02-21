@@ -48,6 +48,7 @@ GameObject:
   - component: {fileID: 7517503944096963471}
   - component: {fileID: 5861033048749491711}
   - component: {fileID: 3794243529290882022}
+  - component: {fileID: 4317402609053865851}
   m_Layer: 6
   m_Name: PlayerEntity
   m_TagString: Untagged
@@ -193,6 +194,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactableFinder: {fileID: 7435346150611557826}
+--- !u!114 &4317402609053865851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5263653556313251293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cf4dac38f9b46c19216cc09f54d71c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5583291541372695694
 GameObject:
   m_ObjectHideFlags: 0
@@ -202,7 +215,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3167921699367033362}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Colliders
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -236,7 +249,7 @@ GameObject:
   - component: {fileID: 4170141838024772171}
   - component: {fileID: 7435346150611557826}
   - component: {fileID: 3789167821356246149}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: InteractorCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}

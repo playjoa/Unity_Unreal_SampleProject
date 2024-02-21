@@ -16,9 +16,10 @@ MonoBehaviour:
   skillName: Aoe Explosion
   skillIcon: {fileID: 0}
   skillType: 1
+  castDuration: 2.5
   coolDown: 5
   interactionData: {fileID: 11400000, guid: 1aa97da3cd06f8c46b77add2af4d4977, type: 2}
-  range: 0
+  range: 3
   vfxToPlay: {fileID: 0}
   targetsHitEntities: 02000000
   targetsAvoidEntities: 01000000

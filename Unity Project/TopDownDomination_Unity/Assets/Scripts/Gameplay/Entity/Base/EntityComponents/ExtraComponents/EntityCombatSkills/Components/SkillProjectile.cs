@@ -142,9 +142,9 @@ namespace Gameplay.Entity.Base.EntityComponents.ExtraComponents.EntityCombatSkil
             onDisable.Invoke();
         }
 
-        protected virtual void DisableProjectile()
+        private void DisableProjectile()
         {
-            Destroy(this);
+            Destroy(gameObject);
         }
     }
 }

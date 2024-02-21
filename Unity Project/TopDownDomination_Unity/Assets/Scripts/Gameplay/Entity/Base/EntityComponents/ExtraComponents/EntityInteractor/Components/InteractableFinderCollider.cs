@@ -19,7 +19,7 @@ namespace Gameplay.Entity.Base.EntityComponents.ExtraComponents.Components
 
         private void OnTriggerExit(Collider other)
         {
-            if (other.TryGetComponent<IGameInteractable>(out var interactable)) return;
+            if (!other.TryGetComponent<IGameInteractable>(out var interactable)) return;
             if (!interactable.CanInteract) return;
 
             OnTriggerExitInteractable?.Invoke(interactable);

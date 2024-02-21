@@ -15,6 +15,7 @@ namespace Gameplay.Entity.Base.EntityComponents.ExtraComponents.EntityCombatSkil
         [SerializeField] private CombatSkillType skillType;
 
         [Header("Skill Config. Data")] 
+        [SerializeField] private float castDuration = 1f;
         [SerializeField] private float coolDown = 5f;
 
         [Header("Interaction Data")]
@@ -24,6 +25,7 @@ namespace Gameplay.Entity.Base.EntityComponents.ExtraComponents.EntityCombatSkil
         public Sprite SkillIcon => skillIcon;
         public CombatSkillType SkillType => skillType;
 
+        public float CastDuration => castDuration;
         public float CoolDown => coolDown;
         
         public EntityInteractionData InteractionData => interactionData;

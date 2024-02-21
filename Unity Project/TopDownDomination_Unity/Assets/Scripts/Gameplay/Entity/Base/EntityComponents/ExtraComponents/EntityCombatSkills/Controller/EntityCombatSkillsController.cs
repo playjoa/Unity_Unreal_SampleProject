@@ -15,7 +15,9 @@ namespace Gameplay.Entity.Base.EntityComponents.ExtraComponents.EntityCombatSkil
     {
         public Dictionary<CombatSkillType, CombatSkill> CombatSkills { get; private set; }
 
-        public event Action<CombatSkill> OnSkillExecuted; 
+        public event Action<CombatSkill> OnSkillExecuted;
+
+        private bool _castingSkill = false;
         
         protected override void OnInitiate(IGameEntity owner)
         {
@@ -40,8 +42,6 @@ namespace Gameplay.Entity.Base.EntityComponents.ExtraComponents.EntityCombatSkil
 
         public void TriggerSkillCooldown(CombatSkill skill, Action onAfterCoolDown)
         {
-            if (skill.CanCast) return;
-
             StartCoroutine(TriggerSkillCoolDown(skill.BaseData.CoolDown, onAfterCoolDown));
         }
 
@@ -49,17 +49,25 @@ namespace Gameplay.Entity.Base.EntityComponents.ExtraComponents.EntityCombatSkil
         {
             yield return new WaitForSeconds(coolDownTime);
             onAfter?.Invoke();
+            _castingSkill = false;
+        }
+        
+        private IEnumerator WaitForSkillCast(CombatSkill castingSkill)
+        {
+            _castingSkill = true;
+            yield return new WaitForSeconds(castingSkill.BaseData.CastDuration);
+            _castingSkill = false;
         }
         
         private void OnEntityRequestedSkillHandler(CombatSkillRequestPackage requestPackage)
         {
+            if (_castingSkill) return;
             if (!CombatSkills.TryGetValue(requestPackage.SkillType, out var combatSkill)) return;
             if (!combatSkill.CanCast) return;
-
-            if (combatSkill.ExecuteSkill(requestPackage))
-            {
-                OnSkillExecuted?.Invoke(combatSkill);
-            }
+            if (!combatSkill.ExecuteSkill(requestPackage)) return;
+            
+            StartCoroutine(WaitForSkillCast(combatSkill));
+            OnSkillExecuted?.Invoke(combatSkill);
         }
     }
 }
