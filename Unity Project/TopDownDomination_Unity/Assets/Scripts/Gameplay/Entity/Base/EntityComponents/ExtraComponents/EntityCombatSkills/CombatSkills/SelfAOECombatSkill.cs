@@ -7,11 +7,11 @@ using UnityEngine;
 
 namespace Gameplay.Entity.Base.EntityComponents.ExtraComponents.EntityCombatSkills.CombatSkills
 {
-    public class AOECombatSkill : CombatSkill<AOECombatSkillData>
+    public class SelfAOECombatSkill : CombatSkill<AOECombatSkillData>
     {
         private readonly Collider[] _results = new Collider[10];
         
-        public AOECombatSkill(AOECombatSkillData data, EntityCombatSkillsController skillsController) : base(data, skillsController)
+        public SelfAOECombatSkill(AOECombatSkillData data, EntityCombatSkillsController skillsController) : base(data, skillsController)
         {
         }
 
@@ -19,7 +19,7 @@ namespace Gameplay.Entity.Base.EntityComponents.ExtraComponents.EntityCombatSkil
         {
             var size = Physics.OverlapSphereNonAlloc
             (
-                Owner.EntityTransform.position,
+                requestPackage.CastPosition,
                 CombatSkillData.Range,
                 _results,
                 LayerUtils.EntityLayerIndex

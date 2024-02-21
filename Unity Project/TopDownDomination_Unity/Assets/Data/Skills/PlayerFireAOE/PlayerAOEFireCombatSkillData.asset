@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 80784553195d4ff9aafdcb97de0f02bb, type: 3}
-  m_Name: PlayerAOECombatSkillData
+  m_Name: PlayerAOEFireCombatSkillData
   m_EditorClassIdentifier: 
   id: 6845a69f-be26-4beb-ac7b-49b549d81a8d
-  skillName: Aoe Explosion
-  skillIcon: {fileID: 0}
+  skillName: Fire Explosion
+  skillIcon: {fileID: 21300000, guid: 65cff7a434d6d2244a255ff2c4ad657e, type: 3}
   skillType: 1
   castDuration: 2.5
   coolDown: 5

@@ -12,6 +12,7 @@ namespace Gameplay.Entity.Base.EntityComponents.ExtraComponents.EntityCombatSkil
     public class AOECombatSkillData : CombatSkillData
     {
         [Header("AOE Config.")] 
+        [Tooltip("Will execute on caster position, instead of aim position.")] [SerializeField] private bool selfAOE;
         [SerializeField] private float range;
 
         [Header("VFX Config.")] 
@@ -21,15 +22,21 @@ namespace Gameplay.Entity.Base.EntityComponents.ExtraComponents.EntityCombatSkil
         [SerializeField] private List<EntityType> targetsHitEntities = new() { EntityType.Enemy };
         [SerializeField] private List<EntityType> targetsAvoidEntities = new() { EntityType.Player };
         
+        public bool SelfAOE => selfAOE;
         public float Range => range;
         
         public VfxData VfxToPlay => vfxToPlay;
         
         public List<EntityType> TargetsHitEntities => targetsHitEntities;
         public List<EntityType> TargetsAvoidEntities => targetsAvoidEntities;
-        
+
         public override CombatSkill GenerateCombatSkill(EntityCombatSkillsController skillsController)
         {
+            if (selfAOE)
+            {
+                return new SelfAOECombatSkill(this, skillsController);
+            }
+
             return new AOECombatSkill(this, skillsController);
         }
     }

@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2b401dd029ae43388b9e0ce60a249717, type: 3}
-  m_Name: PlayerProjectileSkillData
+  m_Name: PlayerFireProjectileSkillData
   m_EditorClassIdentifier: 
   id: b9c6559c-2b37-463e-8139-82fd674b1264
   skillName: FireBall
-  skillIcon: {fileID: 0}
+  skillIcon: {fileID: 21300000, guid: f19d1e452b8f7de41a455a981ff5983d, type: 3}
   skillType: 0
   castDuration: 1
   coolDown: 1.5

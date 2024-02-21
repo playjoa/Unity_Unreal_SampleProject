@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Gameplay.Entity.Base.Interfaces;
+using UnityEngine;
 
 namespace Gameplay.Entity.Base.EntityComponents.ExtraComponents.EntityCombatSkills.Data
 {
