@@ -1,5 +1,4 @@
-﻿using System;
-using Gameplay.GameModeSystem.Interfaces;
+﻿using Gameplay.GameModeSystem.Interfaces;
 using UnityEngine;
 
 namespace Gameplay.GameModeSystem.UI

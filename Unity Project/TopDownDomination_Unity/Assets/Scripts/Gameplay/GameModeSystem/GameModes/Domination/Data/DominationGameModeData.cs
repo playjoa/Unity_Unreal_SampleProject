@@ -15,7 +15,9 @@ namespace Gameplay.GameModeSystem.GameModes.Domination.Data
         
         public int ScoreTarget => scoreTarget;
         public int ScoreTickPerFlag => scoreTickPerFlag;
-        
+
+        public override string GameModeName => "Domination";
+
         public override IGameMode GenerateGameMode(GameController gameController)
         {
             return new DominationGameMode(this, gameController);

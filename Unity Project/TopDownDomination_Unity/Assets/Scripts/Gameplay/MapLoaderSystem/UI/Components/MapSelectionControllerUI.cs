@@ -24,6 +24,8 @@ namespace Gameplay.MapLoaderSystem.Components
         
         public override void Initiate()
         {
+            if (DataBase == null) return;
+            
             var allMapOptions = DataBase.MapsDataBase.DataItems;
 
             foreach (var mapData in allMapOptions)

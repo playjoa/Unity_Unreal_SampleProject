@@ -41,7 +41,7 @@ namespace Gameplay.MapLoaderSystem.Components
 
         private void SetMapIconImage(MapData mapData)
         {
-            mapSelectionImage.overrideSprite = mapData.MapIcon;
+            mapIconImage.overrideSprite = mapData.MapIcon;
         }
 
         private void SetMapNameText(MapData mapData)

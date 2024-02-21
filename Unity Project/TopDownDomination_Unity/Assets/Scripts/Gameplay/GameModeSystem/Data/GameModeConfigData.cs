@@ -11,7 +11,9 @@ namespace Gameplay.GameModeSystem.Data
         [SerializeField] private bool isTimedGameMode = true;
         [SerializeField] private int gameModeTimeLimit = 300;
         [SerializeField] private TimerMode gameModeTimerMode = TimerMode.CountToLimit;
-        
+
+        public abstract string GameModeName { get; }
+
         public bool IsTimedGameMode => isTimedGameMode;
         public int GameModeTimeLimit => gameModeTimeLimit;
         public TimerMode GameModeTimerMode => gameModeTimerMode;

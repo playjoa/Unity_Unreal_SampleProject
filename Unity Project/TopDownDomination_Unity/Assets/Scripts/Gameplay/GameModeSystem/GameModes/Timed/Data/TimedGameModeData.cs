@@ -9,6 +9,8 @@ namespace Gameplay.GameModeSystem.GameModes.Timed.Data
     [CreateAssetMenu(menuName = "GameSystems/GameModes/TimedGameModeData", fileName = "New TimedGameModeData")]
     public class TimedGameModeData : GameModeConfigData
     {
+        public override string GameModeName => "Timed";
+
         public override IGameMode GenerateGameMode(GameController gameController)
         {
             return new TimedGameMode(this, gameController);
