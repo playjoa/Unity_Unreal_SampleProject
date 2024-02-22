@@ -26,7 +26,7 @@ To maintain simplicity and focus on mechanics rather than graphics, the same ass
 
 ### Assets:
 - **Animations:** [Adobe Mixamo](https://www.mixamo.com/)
-- **Asset Pack:** [Synty Studios: POLYGON - Prototype Pack]([https://syntystore.com/collections/polygon](https://syntystore.com/products/polygon-prototype-pack?_pos=1&_psq=proto&_ss=e&_v=1.0))
+- **Asset Pack:** [Synty Studios: POLYGON - Prototype Pack](https://syntystore.com/products/polygon-prototype-pack?_pos=1&_psq=proto&_ss=e&_v=1.0)
 - **UI Assets:** [Kenny - UI Pack](https://kenney.nl/assets/ui-pack)
 
 ### Engines:
