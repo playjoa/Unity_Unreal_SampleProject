@@ -19,8 +19,8 @@ namespace Gameplay.UI.Controller
         
         public IEnumerator Initiate(GameController gameplaySystem)
         {
-            _playerUIComponents = GetComponentsInChildren<IPlayerUI>(true).ToList();
-            _gameUIComponents = GetComponentsInChildren<IGameUI>(true).ToList();
+            _playerUIComponents = playerCanvas.GetComponentsInChildren<IPlayerUI>(true).ToList();
+            _gameUIComponents = gameCanvas.GetComponentsInChildren<IGameUI>(true).ToList();
             
             yield return true;
 

@@ -23,7 +23,7 @@ MonoBehaviour:
   entityType: 1
   healthData:
     isInvulnerable: 0
-    startHealthAmount: 150
+    startHealthAmount: 80
     maxHealthAmount: 150
   movementData:
     canMove: 1

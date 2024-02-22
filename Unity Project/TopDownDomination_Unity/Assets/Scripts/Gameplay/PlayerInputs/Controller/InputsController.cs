@@ -2,6 +2,7 @@
 using System.Collections;
 using Gameplay.GameControllerSystem.Base;
 using Gameplay.GameControllerSystem.Controller;
+using Gameplay.PlayerInputs.Utils;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -58,6 +59,8 @@ namespace Gameplay.PlayerInputs.Controller
         
         private void InputFirePrimaryHandler(InputAction.CallbackContext context)
         {
+            if (InputUtils.MouseOnTopOfUI()) return;
+            
             OnPrimaryFire?.Invoke();
         }
 

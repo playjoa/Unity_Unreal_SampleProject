@@ -11,11 +11,8 @@ namespace Gameplay.Entity.Base.EntityComponents.ExtraComponents.EntityCombatSkil
 {
     public class PlayerCombatSkillsViewController : MonoBehaviour, IPlayerUI
     {
-        [Header("Prefab Config.")]
-        [SerializeField] private CombatSkillUIView combatSkillViewPrefab;
-
         [Header("View Config.")] 
-        [SerializeField] private SerializableDictio<CombatSkillType, RectTransform> combatSkillsTargetRects;
+        [SerializeField] private SerializableDictio<CombatSkillType, CombatSkillUIView> combatSkillsTargetRects;
         
         private readonly List<CombatSkillUIView> _combatSkillViews = new();
         private EntityCombatSkillsController _playerCombatSkillsController;
@@ -25,6 +22,12 @@ namespace Gameplay.Entity.Base.EntityComponents.ExtraComponents.EntityCombatSkil
             if (!playerEntity.TryGetExtraComponent(out _playerCombatSkillsController)) return;
             
             combatSkillsTargetRects.Initiate();
+            
+            foreach (var (combatSkillType, combatSkillUI) in combatSkillsTargetRects.GeneratedDictionary)
+            {
+                combatSkillUI.gameObject.SetActive(false);
+            }
+            
             foreach (var (combatSkillType, combatSkill) in _playerCombatSkillsController.CombatSkills)
             {
                 TryInitiateCombatSkillView(combatSkill);
@@ -38,16 +41,14 @@ namespace Gameplay.Entity.Base.EntityComponents.ExtraComponents.EntityCombatSkil
 
         private void TryInitiateCombatSkillView(CombatSkill combatSkill)
         {
-            if (!combatSkillsTargetRects.TryGetValue(combatSkill.BaseData.SkillType, out var skillRect))
+            if (!combatSkillsTargetRects.TryGetValue(combatSkill.BaseData.SkillType, out var combatSkillUI))
             {
                 Debug.LogWarning($"Missing rect for skill: {combatSkill.BaseData.SkillType}");
                 return;
             }
             
-            var newCombatSkillView = Instantiate(combatSkillViewPrefab, skillRect);
-            newCombatSkillView.Initiate(combatSkill);
-            
-            _combatSkillViews.Add(newCombatSkillView);
+            combatSkillUI.Initiate(combatSkill);
+            _combatSkillViews.Add(combatSkillUI);
         }
     }
 }

@@ -12,7 +12,7 @@ namespace Gameplay.Entity.Base.Components
         
         public int MaxHealthAmount { get; private set; }
         public int CurrentHealthAmount { get; private set; }
-        public float HealthPercentage => (float) CurrentHealthAmount / MaxHealthAmount;
+        public float HealthPercentage => MaxHealthAmount <= 0 ? 0 : (float)CurrentHealthAmount / MaxHealthAmount;
         public bool IsInvulnerable { get; private set; } = false;
         public bool IsDead => CurrentHealthAmount <= 0;
 
@@ -25,8 +25,6 @@ namespace Gameplay.Entity.Base.Components
             MaxHealthAmount = _healthData.MaxHealthAmount;
             CurrentHealthAmount = _healthData.StartHealthAmount;
             IsInvulnerable = _healthData.IsInvulnerable;
-            
-            CurrentHealthAmount = MaxHealthAmount;
         }
 
         protected override void OnRevive()

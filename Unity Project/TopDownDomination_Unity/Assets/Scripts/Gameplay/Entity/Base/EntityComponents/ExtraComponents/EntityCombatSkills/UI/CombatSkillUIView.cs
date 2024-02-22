@@ -27,8 +27,6 @@ namespace Gameplay.Entity.Base.EntityComponents.ExtraComponents.EntityCombatSkil
         
         private float _currentCoolDownTime;
         
-        private const float ON_READY_ALPHA = 1f;
-        private const float ON_COOLDOWN_ALPHA = 0.6f;
         private const float WAIT_TIME_TICK = 0.1f;
         
         public void Initiate(CombatSkill targetCombatSkill)
@@ -40,6 +38,8 @@ namespace Gameplay.Entity.Base.EntityComponents.ExtraComponents.EntityCombatSkil
             
             _combatSkillInDisplay.OnSkillExecuted += OnSkillExecutedHandler;
             _combatSkillInDisplay.OnSkillCooldownReset += OnSkillCoolDownResetHandler;
+            
+            gameObject.SetActive(true);
         }
 
         private void OnDestroy()
@@ -57,7 +57,7 @@ namespace Gameplay.Entity.Base.EntityComponents.ExtraComponents.EntityCombatSkil
 
         private void SetCoolDownTime(float remainingCoolDownTime)
         {
-            skillCoolDownTimerTMP.text = remainingCoolDownTime.ToNiceTimer();
+            skillCoolDownTimerTMP.text = remainingCoolDownTime.ToString("N1");
         }
         
         private void SetCoolDownProgress(float progress)
@@ -70,12 +70,12 @@ namespace Gameplay.Entity.Base.EntityComponents.ExtraComponents.EntityCombatSkil
             if (coolDownState)
             {
                 skillCoolDownTimerTMP.gameObject.SetActive(true);
-                skillIconImage.SetAlpha(ON_COOLDOWN_ALPHA);
+                coolDownProgressFillImage.gameObject.SetActive(true);
             }
             else
             {
                 skillCoolDownTimerTMP.gameObject.SetActive(false);
-                skillIconImage.SetAlpha(ON_READY_ALPHA);
+                coolDownProgressFillImage.gameObject.SetActive(false);
             }
         }
 
@@ -99,7 +99,8 @@ namespace Gameplay.Entity.Base.EntityComponents.ExtraComponents.EntityCombatSkil
             _currentCoolDownTime = combatSkill.BaseData.CoolDown;
             SetCoolDownTime(_currentCoolDownTime);
             SetCoolDownProgress(CoolDownProgress);
-
+            ToggleCoolDownState(true);
+            
             _coolDownCoroutine = StartCoroutine(CoolDownCoroutine());
         }
         
