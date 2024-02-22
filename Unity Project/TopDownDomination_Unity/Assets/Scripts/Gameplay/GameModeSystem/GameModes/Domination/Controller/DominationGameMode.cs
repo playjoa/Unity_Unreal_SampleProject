@@ -12,14 +12,17 @@ namespace Gameplay.GameModeSystem.GameModes.Domination.Controller
 {
     public class DominationGameMode : GameMode<DominationGameModeData>
     {
-        public List<DominationZone> AllDominationZones { get; private set; }
+        public List<DominationZone> AllDominationZones { get; private set; } = new();
 
         public event Action<DominationGameMode> OnScoreUpdated;
 
-        public int DominationPoints { get; private set; }
+        public int CurrentDominationPoints { get; private set; }
+        public int TargetDominationPoints { get; private set; }
+        public float DominationPointsProgress => CurrentDominationPoints / (float)TargetDominationPoints;
 
         public DominationGameMode(DominationGameModeData gameModeData, GameController gameController) : base(gameModeData, gameController)
         {
+            TargetDominationPoints = gameModeData.ScoreTarget;
         }
 
         protected override void OnInitiateGameMode()
@@ -51,13 +54,13 @@ namespace Gameplay.GameModeSystem.GameModes.Domination.Controller
         {
             if (pointsToAdd == 0) return;
 
-            DominationPoints = Mathf.Clamp(DominationPoints + pointsToAdd, 0, GameModeConfigData.ScoreTarget);
+            CurrentDominationPoints = Mathf.Clamp(CurrentDominationPoints + pointsToAdd, 0, GameModeConfigData.ScoreTarget);
             OnScoreUpdated?.Invoke(this);
         }
 
         private bool ProcessDominationPoints()
         {
-            if (DominationPoints >= GameModeConfigData.ScoreTarget)
+            if (CurrentDominationPoints >= GameModeConfigData.ScoreTarget)
                 return true;
 
             return false;

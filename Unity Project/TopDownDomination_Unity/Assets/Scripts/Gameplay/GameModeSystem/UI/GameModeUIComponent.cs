@@ -17,6 +17,7 @@ namespace Gameplay.GameModeSystem.UI
 
             CurrentGameMode = tGameMode;
             OnInitiate(CurrentGameMode);
+            ToggleUI(true);
         }
 
         protected virtual void OnInitiate(TGameMode currentGameMode)
@@ -36,7 +37,7 @@ namespace Gameplay.GameModeSystem.UI
 
         protected virtual void OnCleanUp()
         {
-            
+
         }
 
         public void ToggleUI(bool value)

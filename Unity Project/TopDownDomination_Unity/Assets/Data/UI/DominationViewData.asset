@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4628d3b7e2324c28a77545e50177d7c5, type: 3}
   m_Name: DominationViewData
   m_EditorClassIdentifier: 
-  DominatedBaseColor: {r: 0.9245283, g: 0.36196154, b: 0.36196154, a: 1}
-  OwnedByPlayerColor: {r: 0, g: 0.59054685, b: 1, a: 1}
+  DominatedBaseColor: {r: 0.8156863, g: 0.21568628, b: 0.18431373, a: 1}
+  OwnedByPlayerColor: {r: 0.23921569, g: 0.20392157, b: 0.54509807, a: 1}

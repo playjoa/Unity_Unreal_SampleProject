@@ -33,7 +33,9 @@ namespace Gameplay.GameModeSystem.UI
 
         protected override void OnCleanUp()
         {
-            _currentGameMode.OnGameModeTick += OnGameModeTickHandler;
+            if (_currentGameMode == null) return;
+            
+            _currentGameMode.OnGameModeTick -= OnGameModeTickHandler;
         }
 
         private void SetGameTimeText(float gameTime)

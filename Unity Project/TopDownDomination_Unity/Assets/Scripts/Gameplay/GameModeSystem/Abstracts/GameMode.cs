@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections;
 using Gameplay.Entity.Base.Components;
 using Gameplay.Entity.Base.Interfaces;
 using Gameplay.GameControllerSystem.Controller;
 using Gameplay.GameModeSystem.Data;
 using Gameplay.GameModeSystem.Interfaces;
+using UnityEngine;
 
 namespace Gameplay.GameModeSystem.Abstracts
 {
@@ -19,6 +21,8 @@ namespace Gameplay.GameModeSystem.Abstracts
 
         protected GameController GameController { get; private set; }
         protected IGameEntity PlayerEntity { get; private set; }
+
+        private Coroutine _gameTickCoroutine;
         
         protected GameMode(GameModeConfigData gameModeConfigData, GameController gameController)
         {
@@ -34,7 +38,7 @@ namespace Gameplay.GameModeSystem.Abstracts
             if (BaseGameModeData.IsTimedGameMode)
             {
                 InitiateGameTime();
-                GameController.InvokeRepeating(nameof(GameTick), 1f, 1f);
+                _gameTickCoroutine = GameController.StartCoroutine(GameTickCoroutine());
             }
             
             OnInitiateGameMode();
@@ -45,29 +49,38 @@ namespace Gameplay.GameModeSystem.Abstracts
         public void EndGameMode()
         {
             GameController.PlayerEntity.EntityHealth.OnDied -= OnPlayerDiedHandler;
-            GameController.CancelInvoke(nameof(GameTick));
-            
+
+            if (BaseGameModeData.IsTimedGameMode && _gameTickCoroutine != null)
+            {
+                GameController.StopCoroutine(_gameTickCoroutine);
+            }
+
             OnEndGameMode();
         }
         
-        private void GameTick()
+        private IEnumerator GameTickCoroutine()
         {
-            ProcessGameTime();
-            OnGameTick(GameTime);
+            var tickWait = new WaitForSeconds(1);
+            yield return tickWait;
             
-            if (IsInTimeModeLimit())
+            while (IsInTimeLimit())
             {
-                InvokeGameEnd
-                (
-                    new EndGameData
-                    {
-                        GameEndReason = GameEndReason.TimeOver,
-                        GameController = this.GameController
-                    }
-                );
+                ProcessGameTime();
+                OnGameTick(GameTime);
+                OnGameModeTick?.Invoke(GameTime);
+                yield return tickWait;
             }
-            
-            OnGameModeTick?.Invoke(GameTime);
+
+            InvokeGameEnd
+            (
+                new EndGameData
+                {
+                    GameEndReason = GameEndReason.TimeOver,
+                    GameController = this.GameController
+                }
+            );
+
+            _gameTickCoroutine = null;
         }
         
         private void InitiateGameTime()
@@ -83,14 +96,14 @@ namespace Gameplay.GameModeSystem.Abstracts
             }
         }
         
-        private bool IsInTimeModeLimit()
+        private bool IsInTimeLimit()
         {
             switch (BaseGameModeData.GameModeTimerMode)
             {
                 case GameModeConfigData.TimerMode.CountToLimit:
-                    return GameTime >= BaseGameModeData.GameModeTimeLimit;
+                    return GameTime < BaseGameModeData.GameModeTimeLimit;
                 case GameModeConfigData.TimerMode.CountFromLimitToZero:
-                    return GameTime <= 0;
+                    return GameTime > 0;
                 default:
                     return true;
             }

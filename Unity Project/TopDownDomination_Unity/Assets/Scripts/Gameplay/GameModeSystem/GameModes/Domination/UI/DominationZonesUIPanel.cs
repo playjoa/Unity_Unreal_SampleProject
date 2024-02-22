@@ -6,14 +6,17 @@ using UnityEngine;
 
 namespace Gameplay.GameModeSystem.GameModes.Domination.UI
 {
-    public class DominationZonesUIController : GameModeUIComponent<DominationGameMode>
+    public class DominationZonesUIPanel : GameModeUIComponent<DominationGameMode>
     {
-        [Header("Prefab")]
+        [Header("Prefabs.")]
         [SerializeField] private DominationViewUI dominationViewPrefab;
 
-        [Header("Rect Transform")] 
+        [Header("Target Rect")] 
         [SerializeField] private RectTransform dominationViewsRect;
-
+        
+        [Header("UI Components")]
+        [SerializeField] private DominationGameModeUIComponent[] dominationUIComponents;
+        
         private List<DominationViewUI> _dominationViews = new();
         
         protected override void OnInitiate(DominationGameMode currentGameMode)
@@ -22,6 +25,11 @@ namespace Gameplay.GameModeSystem.GameModes.Domination.UI
             {
                 CreateDominationView(targetDominationZone);
             }
+
+            foreach (var dominationUIComponent in dominationUIComponents)
+            {
+                dominationUIComponent.Initiate(currentGameMode);
+            }
         }
 
         private void CreateDominationView(DominationZone dominationZone)
@@ -29,6 +37,13 @@ namespace Gameplay.GameModeSystem.GameModes.Domination.UI
             var newDominationView = Instantiate(dominationViewPrefab, dominationViewsRect);
             newDominationView.Initiate(dominationZone);
             _dominationViews.Add(newDominationView);
+        }
+        
+        public void UpdateChildModules()
+        {
+            if (!Application.isEditor) return;
+
+            dominationUIComponents = GetComponentsInChildren<DominationGameModeUIComponent>();
         }
     }
 }
