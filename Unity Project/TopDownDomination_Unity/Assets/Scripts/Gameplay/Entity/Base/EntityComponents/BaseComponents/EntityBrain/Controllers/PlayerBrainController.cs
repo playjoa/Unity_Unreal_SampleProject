@@ -45,7 +45,7 @@ namespace Gameplay.Entity.Base.EntityComponents.BaseComponents.EntityBrain.Contr
         {
             var worldPos = CameraController.GetWorldPositionFromUI(InputsController.PlayerAimInput);
             return (Owner.EntityTransform.position - worldPos).normalized;
-        ss}
+        }
 
         private void OnPlayerTriggeredPrimaryHandler()
         {
