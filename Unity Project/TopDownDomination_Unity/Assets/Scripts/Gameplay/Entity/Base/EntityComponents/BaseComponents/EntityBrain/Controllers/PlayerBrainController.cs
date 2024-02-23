@@ -13,8 +13,8 @@ namespace Gameplay.Entity.Base.EntityComponents.BaseComponents.EntityBrain.Contr
     {
         public override event Action<CombatSkillRequestPackage> OnEntitySkillRequest;
         public override Vector3 MoveDirection => PlayerMovementInCameraDirection(InputsController.PlayerMovementInput);
-        public override Vector3 AimDirection => Vector3.zero;
-
+        public override Vector3 AimDirection => PlayerAimDirection();
+        
         private InputsController InputsController => GameController.ME.InputsController;
         private static GameCameraController CameraController => GameController.ME.GameCameraController;
         
@@ -30,11 +30,22 @@ namespace Gameplay.Entity.Base.EntityComponents.BaseComponents.EntityBrain.Contr
             InputsController.OnStartSecondaryFire -= OnPlayerTriggeredSecondaryHandler;
         }
 
+        private void Update()
+        {
+            Debug.Log($"Aim Direction: {AimDirection}");
+        }
+
         private Vector3 PlayerMovementInCameraDirection(Vector2 playerInputValue)
         {
             var inputDirection = CameraController.GetRelativeInputDirectionFromCameraView(playerInputValue);
             return inputDirection * Time.deltaTime;
         }
+
+        private Vector3 PlayerAimDirection()
+        {
+            var worldPos = CameraController.GetWorldPositionFromUI(InputsController.PlayerAimInput);
+            return (Owner.EntityTransform.position - worldPos).normalized;
+        ss}
 
         private void OnPlayerTriggeredPrimaryHandler()
         {

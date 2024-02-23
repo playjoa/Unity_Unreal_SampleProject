@@ -87,7 +87,7 @@ namespace Gameplay.Entity.Base.EntityComponents.BaseComponents.EntityMovement
 
         protected void InvokeGroundedEvent(bool state) => OnGroundStateChanged?.Invoke(state);
 
-        private void RotateCharacter()
+        protected virtual void RotateCharacter()
         {
             if (!RotationActive) return;
             if (Owner.EntityHealth.IsDead) return;

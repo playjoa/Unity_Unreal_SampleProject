@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using Cinemachine;
 using Gameplay.Entity.Base.Interfaces;
+using Gameplay.Entity.Base.Utils;
 using Gameplay.GameCameraSystem.Components;
 using Gameplay.GameCameraSystem.Data;
 using Gameplay.GameControllerSystem.Base;
 using Gameplay.GameControllerSystem.Controller;
 using UnityEngine;
+using Utils.Extensions;
 
 namespace Gameplay.GameCameraSystem.Controller
 {
@@ -91,6 +93,28 @@ namespace Gameplay.GameCameraSystem.Controller
             }
 
             return mainCamera.WorldToScreenPoint(worldPosition);
+        }
+        
+        public Vector3 GetWorldPositionFromUI(Vector2 uiPosition)
+        {
+            if (!TryGetMainCamera(out var mainCamera))
+            {
+                return Vector3.zero;
+            }
+            
+            // Create a ray from the main camera through the mouse position
+            Ray ray = mainCamera.ScreenPointToRay(uiPosition);
+            RaycastHit hit;
+            
+            // Perform the raycast with the specified layer mask
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity, LayerUtils.GroundLayerMask))
+            {
+                // Return the point in the game world where the ray hit an object on the "Ground" layer
+                return hit.point.SetZ(0);
+            }
+
+            // If no valid point is hit, return Vector3.zero
+            return Vector3.zero;
         }
 
         public void RequestCameraShake(CameraShakeData shakeData)
