@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e42351b4ae82474abbdb8edad18ce59d, type: 3}
+  m_Name: FireExplosionVFXData
+  m_EditorClassIdentifier: 
+  id: 4e9a455d-1dd1-4386-8cf0-feb06ccbe1f1
+  vfxPrefab: {fileID: 5578656212427178645, guid: 5db18e07a84c98f4fa569cd9868fd99e,
+    type: 3}
+  vfxDuration: 3
+  type: 1
+  startPositionOffSet: {x: 0, y: 0, z: 0}

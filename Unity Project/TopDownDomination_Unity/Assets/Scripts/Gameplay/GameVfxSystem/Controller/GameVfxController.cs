@@ -22,7 +22,6 @@ namespace Gameplay.GameVfxSystem.Controller
 
         public void OnCleanUp()
         {
-            
         }
 
         public GameVfx SpawnVfx(VfxData data, IGameEntity requester, Vector3 position, float overrideDuration = -1)

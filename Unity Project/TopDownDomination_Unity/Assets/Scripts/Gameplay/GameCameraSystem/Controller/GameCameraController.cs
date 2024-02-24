@@ -102,18 +102,14 @@ namespace Gameplay.GameCameraSystem.Controller
                 return Vector3.zero;
             }
             
-            // Create a ray from the main camera through the mouse position
             Ray ray = mainCamera.ScreenPointToRay(uiPosition);
             RaycastHit hit;
             
-            // Perform the raycast with the specified layer mask
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, LayerUtils.GroundLayerMask))
             {
-                // Return the point in the game world where the ray hit an object on the "Ground" layer
-                return hit.point.SetZ(0);
+                return hit.point;
             }
-
-            // If no valid point is hit, return Vector3.zero
+            
             return Vector3.zero;
         }
 

@@ -1,5 +1,4 @@
-﻿using Gameplay.Entity.Base.Interfaces;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Gameplay.Entity.Base.EntityComponents.ExtraComponents.EntityCombatSkills.Data
 {
@@ -8,6 +7,7 @@ namespace Gameplay.Entity.Base.EntityComponents.ExtraComponents.EntityCombatSkil
         public CombatSkillType SkillType;
         public Quaternion CastRotation;
         public Vector3 CastDirection;
-        public Vector3 CastPosition;
+        public Vector3 CasterPosition;
+        public Vector3 WorldPosition;
     }
 }

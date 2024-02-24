@@ -89,15 +89,21 @@ namespace Gameplay.Entity.Base.EntityComponents.BaseComponents.EntityMovement
 
         protected virtual void RotateCharacter()
         {
-            if (!RotationActive) return;
-            if (Owner.EntityHealth.IsDead) return;
+             if (!RotationActive) return;
+             if (Owner.EntityHealth.IsDead) return;
 
-            var lookDirection = EntityAimDirection;
-            var lookRotation = Quaternion.LookRotation(lookDirection);
-            var slerpRotation = Quaternion.Slerp(Owner.EntityGraphics.EntityGraphicsHolder.rotation, lookRotation,
-                Time.deltaTime * movementData.RotateSpeed);
+             var lookDirection = GetEntityAimDirection();
+             var lookRotation = Quaternion.LookRotation(lookDirection);
+             var slerpRotation = Quaternion.Slerp(Owner.EntityGraphics.EntityGraphicsHolder.rotation, lookRotation,
+                 Time.deltaTime * movementData.RotateSpeed);
 
-            Owner.EntityGraphics.EntityGraphicsHolder.rotation = slerpRotation;
+             Owner.EntityGraphics.EntityGraphicsHolder.rotation = slerpRotation;
+        }
+        
+        private Vector3 GetEntityAimDirection()
+        {
+            var aimDirection = EntityAimDirection;
+            return new Vector3(aimDirection.x, 0, aimDirection.y);
         }
     }
 }

@@ -21,6 +21,6 @@ MonoBehaviour:
   interactionData: {fileID: 11400000, guid: 1aa97da3cd06f8c46b77add2af4d4977, type: 2}
   selfAOE: 1
   range: 4
-  vfxToPlay: {fileID: 0}
+  vfxToPlay: {fileID: 11400000, guid: 12c771f7055a9a646ae7ca9aa112e5f7, type: 2}
   targetsHitEntities: 02000000
   targetsAvoidEntities: 01000000

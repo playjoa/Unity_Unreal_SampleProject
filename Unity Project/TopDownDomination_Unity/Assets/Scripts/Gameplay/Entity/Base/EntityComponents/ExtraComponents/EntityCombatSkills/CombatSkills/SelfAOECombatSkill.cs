@@ -3,12 +3,17 @@ using Gameplay.Entity.Base.EntityComponents.ExtraComponents.EntityCombatSkills.C
 using Gameplay.Entity.Base.EntityComponents.ExtraComponents.EntityCombatSkills.Data;
 using Gameplay.Entity.Base.Interfaces;
 using Gameplay.Entity.Base.Utils;
+using Gameplay.GameControllerSystem.Controller;
+using Gameplay.GameVfxSystem.Controller;
+using Gameplay.GameVfxSystem.Data;
 using UnityEngine;
 
 namespace Gameplay.Entity.Base.EntityComponents.ExtraComponents.EntityCombatSkills.CombatSkills
 {
     public class SelfAOECombatSkill : CombatSkill<AOECombatSkillData>
     {
+        private static GameVfxController VfxController => GameController.ME.GameVfxController;
+        
         private readonly Collider[] _results = new Collider[10];
         
         public SelfAOECombatSkill(AOECombatSkillData data, EntityCombatSkillsController skillsController) : base(data, skillsController)
@@ -19,11 +24,13 @@ namespace Gameplay.Entity.Base.EntityComponents.ExtraComponents.EntityCombatSkil
         {
             var size = Physics.OverlapSphereNonAlloc
             (
-                requestPackage.CastPosition,
+                requestPackage.CasterPosition,
                 CombatSkillData.Range,
                 _results,
                 LayerUtils.EntityLayerIndex
             );
+            
+            SpawnVfx(CombatSkillData.VfxToPlay, requestPackage.CasterPosition);
             
             for (var i = 0; i < size; i++)
             {
@@ -42,6 +49,11 @@ namespace Gameplay.Entity.Base.EntityComponents.ExtraComponents.EntityCombatSkil
         {
             var entityInteraction = CombatSkillData.InteractionData.GenerateInteraction(Owner, targetEntity);
             entityInteraction.ExecuteInteraction();
+        }
+        
+        private void SpawnVfx(VfxData targetVfx, Vector3 targetPosition)
+        {
+            VfxController.SpawnVfx(targetVfx, Owner, targetPosition);
         }
     }
 }

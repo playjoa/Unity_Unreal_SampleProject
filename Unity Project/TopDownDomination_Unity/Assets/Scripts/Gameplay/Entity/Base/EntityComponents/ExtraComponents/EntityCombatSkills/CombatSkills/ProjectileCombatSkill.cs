@@ -23,7 +23,7 @@ namespace Gameplay.Entity.Base.EntityComponents.ExtraComponents.EntityCombatSkil
         {
             if (!_hasProjectilePrefab) return;
 
-            var position = requestPackage.CastPosition + CombatSkillData.ProjectileStartOffSet;
+            var position = requestPackage.CasterPosition + CombatSkillData.ProjectileStartOffSet;
             var rotation = requestPackage.CastRotation;
             var spawnedProjectile = Object.Instantiate(_projectilePrefab, position, rotation);
             

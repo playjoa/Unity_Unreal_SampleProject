@@ -30,11 +30,6 @@ namespace Gameplay.Entity.Base.EntityComponents.BaseComponents.EntityBrain.Contr
             InputsController.OnStartSecondaryFire -= OnPlayerTriggeredSecondaryHandler;
         }
 
-        private void Update()
-        {
-            Debug.Log($"Aim Direction: {AimDirection}");
-        }
-
         private Vector3 PlayerMovementInCameraDirection(Vector2 playerInputValue)
         {
             var inputDirection = CameraController.GetRelativeInputDirectionFromCameraView(playerInputValue);
@@ -44,7 +39,8 @@ namespace Gameplay.Entity.Base.EntityComponents.BaseComponents.EntityBrain.Contr
         private Vector3 PlayerAimDirection()
         {
             var worldPos = CameraController.GetWorldPositionFromUI(InputsController.PlayerAimInput);
-            return (Owner.EntityTransform.position - worldPos).normalized;
+            var targetDirection = (worldPos - Owner.EntityTransform.position).normalized;
+            return  new Vector2(targetDirection.x, targetDirection.z);
         }
 
         private void OnPlayerTriggeredPrimaryHandler()
@@ -52,8 +48,10 @@ namespace Gameplay.Entity.Base.EntityComponents.BaseComponents.EntityBrain.Contr
             OnEntitySkillRequest?.Invoke(new CombatSkillRequestPackage
             {
                 SkillType = CombatSkillType.Primary,
-                CastDirection = Owner.EntityTransform.forward,
-                CastPosition = Owner.EntityTransform.position
+                CastRotation = Owner.EntityGraphics.EntityGraphicsHolder.rotation,
+                CastDirection = Owner.EntityGraphics.EntityGraphicsHolder.forward,
+                CasterPosition = Owner.EntityTransform.position,
+                WorldPosition = CameraController.GetWorldPositionFromUI(InputsController.PlayerAimInput)
             });
         }
         
@@ -62,8 +60,10 @@ namespace Gameplay.Entity.Base.EntityComponents.BaseComponents.EntityBrain.Contr
             OnEntitySkillRequest?.Invoke(new CombatSkillRequestPackage
             {
                 SkillType = CombatSkillType.Secondary,
-                CastDirection = Owner.EntityTransform.forward,
-                CastPosition = Owner.EntityTransform.position
+                CastRotation = Owner.EntityGraphics.EntityGraphicsHolder.rotation,
+                CastDirection = Owner.EntityGraphics.EntityGraphicsHolder.forward,
+                CasterPosition = Owner.EntityTransform.position,
+                WorldPosition = CameraController.GetWorldPositionFromUI(InputsController.PlayerAimInput)
             });
         }
     }

@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entitiesDataBaseList:
   - {fileID: 11400000, guid: ffa48243c690e784dad3313d6e5efeba, type: 2}
-  - {fileID: 11400000, guid: c990f2602080b284b8b6bd0223ef3fdb, type: 2}
   - {fileID: 11400000, guid: eeb4f91c190dc8a44bd13f86a2c604ff, type: 2}
+  - {fileID: 11400000, guid: c990f2602080b284b8b6bd0223ef3fdb, type: 2}
   mapsDataBaseList:
   - {fileID: 11400000, guid: e4f84d898dd3e224994e599fa5ebf9fb, type: 2}
   gameModesDataBaseList:
