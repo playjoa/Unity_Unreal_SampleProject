@@ -16,8 +16,8 @@ MonoBehaviour:
   skillName: Ice Projectile
   skillIcon: {fileID: 21300000, guid: d6eb9b29d1f57e34a9b0c33a3f6a954d, type: 3}
   skillType: 0
-  castDuration: 1
-  coolDown: 1.5
+  castDuration: 0.65
+  coolDown: 0.95
   interactionData: {fileID: 11400000, guid: 4d8e706270e1a6645b3dfbfbeafd36cc, type: 2}
   projectilePrefab: {fileID: 952880892067558815, guid: 765a4794fc6482f4f8b9a0d4cec7dacc,
     type: 3}

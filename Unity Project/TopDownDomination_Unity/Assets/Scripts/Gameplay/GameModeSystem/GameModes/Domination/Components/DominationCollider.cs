@@ -1,5 +1,6 @@
 ﻿using System;
 using Gameplay.Entity.Base.Interfaces;
+using Gameplay.Entity.Base.Utils;
 using UnityEngine;
 
 namespace Gameplay.GameModeSystem.GameModes.Domination.Components
@@ -11,6 +12,7 @@ namespace Gameplay.GameModeSystem.GameModes.Domination.Components
 
         private void OnTriggerEnter(Collider other)
         {
+            if (other.gameObject.layer != LayerUtils.EntityLayerIndex) return;
             if (!other.TryGetComponent<IGameEntity>(out var gameEntity)) return;
             if (!gameEntity.IsActive) return;
             
@@ -19,6 +21,7 @@ namespace Gameplay.GameModeSystem.GameModes.Domination.Components
 
         private void OnTriggerExit(Collider other)
         {
+            if (other.gameObject.layer != LayerUtils.EntityLayerIndex) return;
             if (other.TryGetComponent<IGameEntity>(out var gameEntity)) return;
             if (!gameEntity.IsActive) return;
 

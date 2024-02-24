@@ -16,8 +16,8 @@ MonoBehaviour:
   skillName: FireBall
   skillIcon: {fileID: 21300000, guid: f19d1e452b8f7de41a455a981ff5983d, type: 3}
   skillType: 0
-  castDuration: 1
-  coolDown: 1.5
+  castDuration: 0.85
+  coolDown: 1.25
   interactionData: {fileID: 11400000, guid: 4d8e706270e1a6645b3dfbfbeafd36cc, type: 2}
   projectilePrefab: {fileID: 952880892067558815, guid: 08991cccb517c354caf0adddcbec21b9,
     type: 3}
