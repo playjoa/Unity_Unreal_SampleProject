@@ -7,8 +7,10 @@ using Gameplay.Entity.Base.Data;
 using Gameplay.Entity.Base.Interfaces;
 using Gameplay.GameControllerSystem.Controller;
 using Gameplay.GameModeSystem.GameModes.Domination.Data;
+using Gameplay.SpawnSystem.Abstracts;
 using Gameplay.SpawnSystem.Controller;
 using UnityEngine;
+using Utils.Extensions;
 
 namespace Gameplay.GameModeSystem.GameModes.Domination.Components
 {
@@ -19,6 +21,7 @@ namespace Gameplay.GameModeSystem.GameModes.Domination.Components
         
         [Header("Components")]
         [SerializeField] private DominationCollider dominationCollider;
+        [SerializeField] private SpawnPoint[] dominationSpawnPoints;
 
         public event Action<DominationZone> OnZoneCaptured;
         public event Action<DominationZone> OnZoneCaptureInProgress;
@@ -47,7 +50,7 @@ namespace Gameplay.GameModeSystem.GameModes.Domination.Components
             
             dominationCollider.OnEntityEnterDominationArea += OnEntityEnterHandler;
             dominationCollider.OnEntityExitDominationArea += OnEntityExitHandler;
-
+            
             StartCoroutine(DominationTickCoroutine());
         }
 
@@ -62,11 +65,20 @@ namespace Gameplay.GameModeSystem.GameModes.Domination.Components
         {
             foreach (var guardianData in guardiansData)
             {
-                var spawnedEntity = SpawnController.SpawnEntity(guardianData, transform.position, Quaternion.identity);
+                var spawnedEntity = SpawnController.SpawnEntity(guardianData, GetGuardianSpawnPosition(), Quaternion.identity);
 
                 spawnedEntity.EntityHealth.OnDied += OnGuardianDiedHandler;
                 _currentZoneGuardians.Add(spawnedEntity);
             }
+        }
+
+        private Vector3 GetGuardianSpawnPosition()
+        {
+            if (!dominationSpawnPoints.Any())
+                return transform.position;
+
+            var randomSpawnPoint = dominationSpawnPoints.RandomElement();
+            return randomSpawnPoint.GetSpawnPosition();
         }
 
         private void OnEntityEnterHandler(IGameEntity gameEntity)

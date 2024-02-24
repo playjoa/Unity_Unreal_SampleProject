@@ -27,8 +27,8 @@ namespace Gameplay.GameModeSystem.GameModes.Domination.Controller
 
         protected override void OnInitiateGameMode()
         {
-            GameController.MapContentController.DominationController.Initiate();
-            AllDominationZones = GameController.MapContentController.DominationController.DominationZones;
+            GameController.MapContentController.DominationMapController.Initiate();
+            AllDominationZones = GameController.MapContentController.DominationMapController.DominationZones;
         }
 
         protected override void OnGameTick(int gameDuration)

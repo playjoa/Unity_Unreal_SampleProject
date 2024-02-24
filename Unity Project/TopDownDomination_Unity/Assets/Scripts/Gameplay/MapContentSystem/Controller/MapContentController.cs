@@ -9,12 +9,12 @@ namespace Gameplay.MapContentSystem.Controller
     {
         [Header("Spawns Config.")]
         [SerializeField] private List<SpawnPoint> playerSpawnPoints = new();
-
+        
         [Header("GameMode Map Controllers")] 
-        [SerializeField] private DominationController dominationController;
+        [SerializeField] private DominationMapController dominationMapController;
         
         public List<SpawnPoint> PlayerSpawnPoints => playerSpawnPoints;
         
-        public DominationController DominationController => dominationController;
+        public DominationMapController DominationMapController => dominationMapController;
     }
 }
