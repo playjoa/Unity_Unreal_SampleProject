@@ -27,7 +27,7 @@ namespace Gameplay.Entity.Base.EntityComponents.ExtraComponents.EntityCombatSkil
                 requestPackage.CasterPosition,
                 CombatSkillData.Range,
                 _results,
-                LayerUtils.EntityLayerIndex
+                LayerUtils.EntityLayerMask
             );
             
             SpawnVfx(CombatSkillData.VfxToPlay, requestPackage.CasterPosition);
@@ -37,10 +37,10 @@ namespace Gameplay.Entity.Base.EntityComponents.ExtraComponents.EntityCombatSkil
                 var collider = _results[i];
                 if (collider == null) continue;
                 
-                if (collider.TryGetComponent<IGameEntity>(out var entity)) continue;
-                if (CombatSkillData.TargetsHitEntities.Contains(entity.EntityType)) continue;
-                if (!CombatSkillData.TargetsAvoidEntities.Contains(entity.EntityType)) continue;
-                
+                if (!collider.TryGetComponent<IGameEntity>(out var entity)) continue;
+                if (!CombatSkillData.TargetsHitEntities.Contains(entity.EntityType)) continue;
+                if (CombatSkillData.TargetsAvoidEntities.Contains(entity.EntityType)) continue;
+
                 AffectEntity(entity);
             }
         }

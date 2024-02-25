@@ -30,7 +30,7 @@ namespace Gameplay.GameModeSystem.GameModes.Domination.Components
         public float CaptureProgress { get; private set; }
         public string DominationZoneName => zoneData.DominationZoneName;
 
-        private readonly List<IGameEntity> _currentZoneGuardians = new();
+        private readonly HashSet<IGameEntity> _currentZoneGuardians = new();
         private readonly HashSet<IGameEntity> _currentEntitiesInBase = new();
         private readonly WaitForSeconds _dominationTickWait = new(ZONE_TICK_RATE);
 

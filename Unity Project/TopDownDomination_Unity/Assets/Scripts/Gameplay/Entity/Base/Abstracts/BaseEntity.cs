@@ -40,6 +40,8 @@ namespace Gameplay.Entity.Base.Abstracts
             
             InitiateBaseComponents();
             InitiateExtraComponents();
+
+            entityHealth.OnDied += OnEntityDiedHandler;
         }
 
         public void Revive()
@@ -53,6 +55,8 @@ namespace Gameplay.Entity.Base.Abstracts
             {
                 extraComponent.ReviveComponent();
             }
+
+            OnRevived();
         }
         
         private void OnDestroy()
@@ -105,6 +109,20 @@ namespace Gameplay.Entity.Base.Abstracts
             }
 
             return false;
+        }
+
+        protected virtual void OnDied()
+        {
+        }
+        
+        protected virtual void OnRevived()
+        {
+        }
+        
+        
+        private void OnEntityDiedHandler(HealthChangeData healthChangeData)
+        {
+            OnDied();
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using Gameplay.Entity.Base.Utils;
 using UnityEngine;
 
 namespace Gameplay.Entity.Base.EntityComponents.BaseComponents.EntityMovement
@@ -22,8 +23,9 @@ namespace Gameplay.Entity.Base.EntityComponents.BaseComponents.EntityMovement
 
         private void OnControllerColliderHit(ControllerColliderHit hit)
         {
+            if (hit.gameObject.layer == LayerUtils.EntityLayerIndex) return;
             if (!Active) return;
-
+            
             var body = hit.collider.attachedRigidbody;
 
             if (body == null || body.isKinematic) return;

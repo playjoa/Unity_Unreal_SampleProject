@@ -84,6 +84,7 @@ namespace Gameplay.Entity.Base.Components
             var wasKill = IsDead;
             var healthEventData = new HealthChangeData
             {
+                Victim = Owner,
                 Inflicter = updatePackageData.Inflicter,
                 DealtAmount = updatePackageData.Delta
             };

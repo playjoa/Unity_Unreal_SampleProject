@@ -27,19 +27,19 @@ namespace Gameplay.Entity.Base.EntityComponents.ExtraComponents.EntityCombatSkil
                 requestPackage.WorldPosition,
                 CombatSkillData.Range,
                 _results,
-                LayerUtils.EntityLayerIndex
+                LayerUtils.EntityLayerMask
             );
 
             SpawnVfx(CombatSkillData.VfxToPlay, requestPackage.WorldPosition);
             
-            for (var i = 0; i < size; i++)
+            for (var i = 0; i < _results.Length; i++)
             {
                 var collider = _results[i];
                 if (collider == null) continue;
                 
-                if (collider.TryGetComponent<IGameEntity>(out var entity)) continue;
-                if (CombatSkillData.TargetsHitEntities.Contains(entity.EntityType)) continue;
-                if (!CombatSkillData.TargetsAvoidEntities.Contains(entity.EntityType)) continue;
+                if (!collider.TryGetComponent<IGameEntity>(out var entity)) continue;
+                if (!CombatSkillData.TargetsHitEntities.Contains(entity.EntityType)) continue;
+                if (CombatSkillData.TargetsAvoidEntities.Contains(entity.EntityType)) continue;
                 
                 AffectEntity(entity);
             }
