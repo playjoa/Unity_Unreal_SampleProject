@@ -12,11 +12,13 @@ namespace Gameplay.GameModeSystem.GameModes.Domination.Data
         [SerializeField] private float captureTime = 10f;
 
         [Header("Guardians Config.")] 
+        [SerializeField] private byte guardiansAmount = 3;
         [SerializeField] private List<EntityData> guardiansData = new();
         
         public string DominationZoneName => dominationZoneName;
         public float CaptureTime => captureTime;
 
+        public byte GuardiansAmount => guardiansAmount;
         public List<EntityData> GuardiansData => guardiansData;
     }
 }

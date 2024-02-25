@@ -14,8 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 2087e7c4-8840-492e-a4e3-aa253b331839
   entityName: Enemy
-  entityIcon: {fileID: 0}
-  entityGraphicView: {fileID: 0}
+  entityIcon: {fileID: 21300000, guid: 3f18805af400cea4891436e38263da31, type: 3}
+  damageStatValue: 5
+  speedStatValue: 5
+  entityGraphicView: {fileID: 1024860913751546, guid: 194f8fbf67729fd40936b3465af2cc47,
+    type: 3}
   entityScale: {x: 1, y: 1, z: 1}
   entityType: 2
   healthData:
@@ -34,3 +37,5 @@ MonoBehaviour:
       serializedVersion: 2
       m_Bits: 0
     groundDistance: 0.5
+  primarySkillData: {fileID: 0}
+  secondarySkillData: {fileID: 0}

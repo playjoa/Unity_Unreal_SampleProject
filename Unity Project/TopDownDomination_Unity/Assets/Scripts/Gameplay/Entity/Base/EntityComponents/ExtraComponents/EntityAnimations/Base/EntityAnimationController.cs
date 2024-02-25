@@ -2,7 +2,7 @@
 using Gameplay.Entity.Base.Interfaces;
 using UnityEngine;
 
-namespace Gameplay.Entity.Base.EntityComponents.ExtraComponents.EntityAnimations.Base
+namespace Gameplay.Entity.Base.EntityComponents.ExtraComponents.EntityAnimationSystem.Base
 {
     public abstract class EntityAnimationController : BaseEntityExtraComponent
     {

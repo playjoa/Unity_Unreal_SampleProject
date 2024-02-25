@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 
-namespace Gameplay.Entity.Base.EntityComponents.ExtraComponents.EntityAnimations.Utils
+namespace Gameplay.Entity.Base.EntityComponents.ExtraComponents.EntityAnimationSystem.Utils
 {
-    public static class PlayerAnimations
+    public static class EntityAnimations
     {
         // Layers
         public static readonly int LowerBodyLayer = 0;

@@ -14,4 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dominationZoneName: A
   captureTime: 10
-  guardiansData: []
+  guardiansAmount: 4
+  guardiansData:
+  - {fileID: 11400000, guid: ffa48243c690e784dad3313d6e5efeba, type: 2}

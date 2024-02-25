@@ -7,8 +7,8 @@ namespace Gameplay.Entity.Base.EntityComponents.BaseComponents.EntityInteraction
     public class EntityInteractionsController : BaseEntityComponent
     {
         public event Action<EntityInteraction> OnInteractionRegistered;
-        
-        public List<EntityInteraction> EntityInteractions { get; private set; }
+
+        public List<EntityInteraction> EntityInteractions { get; private set; } = new();
 
         protected override void OnRevive()
         {

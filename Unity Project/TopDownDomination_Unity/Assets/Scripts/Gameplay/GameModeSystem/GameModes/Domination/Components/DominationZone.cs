@@ -44,7 +44,7 @@ namespace Gameplay.GameModeSystem.GameModes.Domination.Components
         
         public void Initiate()
         {
-            InitiateGuardians(zoneData.GuardiansData);
+            InitiateGuardians(zoneData);
             CaptureProgress = 1;
             EntityOwnerType = EntityType.Enemy;
             
@@ -61,14 +61,18 @@ namespace Gameplay.GameModeSystem.GameModes.Domination.Components
             dominationCollider.OnEntityExitDominationArea -= OnEntityExitHandler;
         }
 
-        private void InitiateGuardians(List<EntityData> guardiansData)
+        private void InitiateGuardians(DominationZoneData targetData)
         {
-            foreach (var guardianData in guardiansData)
+            if (targetData == null) return;
+            if (targetData.GuardiansData == null || !targetData.GuardiansData.Any()) return;
+            
+            for (var i = 0; i < targetData.GuardiansAmount; i++)
             {
+                var guardianData = targetData.GuardiansData.RandomElement();
                 var spawnedEntity = SpawnController.SpawnEntity(guardianData, GetGuardianSpawnPosition(), Quaternion.identity);
 
                 spawnedEntity.EntityHealth.OnDied += OnGuardianDiedHandler;
-                _currentZoneGuardians.Add(spawnedEntity);
+                _currentZoneGuardians.Add(spawnedEntity);   
             }
         }
 
