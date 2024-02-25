@@ -22,7 +22,7 @@ namespace Gameplay.GameModeSystem.GameModes.Domination.Components
         private void OnTriggerExit(Collider other)
         {
             if (other.gameObject.layer != LayerUtils.EntityLayerIndex) return;
-            if (other.TryGetComponent<IGameEntity>(out var gameEntity)) return;
+            if (!other.TryGetComponent<IGameEntity>(out var gameEntity)) return;
             if (!gameEntity.IsActive) return;
 
             OnEntityExitDominationArea?.Invoke(gameEntity);

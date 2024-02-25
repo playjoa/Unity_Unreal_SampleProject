@@ -6,6 +6,7 @@ using Gameplay.GameCameraSystem.Controller;
 using Gameplay.GameControllerSystem.Controller;
 using Gameplay.PlayerInputs.Controller;
 using UnityEngine;
+using Utils.Extensions;
 
 namespace Gameplay.Entity.Base.EntityComponents.BaseComponents.EntityBrain.Controllers
 {
@@ -51,7 +52,7 @@ namespace Gameplay.Entity.Base.EntityComponents.BaseComponents.EntityBrain.Contr
                 CastRotation = Owner.EntityGraphics.EntityGraphicsHolder.rotation,
                 CastDirection = Owner.EntityGraphics.EntityGraphicsHolder.forward,
                 CasterPosition = Owner.EntityTransform.position,
-                WorldPosition = CameraController.GetWorldPositionFromUI(InputsController.PlayerAimInput)
+                WorldPosition = CameraController.GetWorldPositionFromUI(InputsController.PlayerAimInput).SetY(0)
             });
         }
         
@@ -63,7 +64,7 @@ namespace Gameplay.Entity.Base.EntityComponents.BaseComponents.EntityBrain.Contr
                 CastRotation = Owner.EntityGraphics.EntityGraphicsHolder.rotation,
                 CastDirection = Owner.EntityGraphics.EntityGraphicsHolder.forward,
                 CasterPosition = Owner.EntityTransform.position,
-                WorldPosition = CameraController.GetWorldPositionFromUI(InputsController.PlayerAimInput)
+                WorldPosition = CameraController.GetWorldPositionFromUI(InputsController.PlayerAimInput).SetY(0)
             });
         }
     }

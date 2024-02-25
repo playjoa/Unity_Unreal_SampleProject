@@ -57,8 +57,8 @@ namespace Gameplay.GameModeSystem.GameModes.Domination.Components
         private void OnDestroy()
         {
             _gameActive = false;
-            dominationCollider.OnEntityEnterDominationArea += OnEntityEnterHandler;
-            dominationCollider.OnEntityExitDominationArea += OnEntityExitHandler;
+            dominationCollider.OnEntityEnterDominationArea -= OnEntityEnterHandler;
+            dominationCollider.OnEntityExitDominationArea -= OnEntityExitHandler;
         }
 
         private void InitiateGuardians(List<EntityData> guardiansData)
@@ -102,20 +102,21 @@ namespace Gameplay.GameModeSystem.GameModes.Domination.Components
 
         private void ProcessDominationZoneTick()
         {
+            if (EntityOwnerType == EntityType.Player) return;
             if (_currentZoneGuardians.Any()) return;
             
             if (_currentEntitiesInBase.Count == 1 && _currentEntitiesInBase.Any(e=> e.EntityType == EntityType.Player))
             {
                 if (!_captureInProgress)
                 {
-                    OnZoneCaptureInProgress?.Invoke(this);
                     _captureInProgress = true;
                     _captureTimer = 0f;
                 }
 
                 _captureTimer += ZONE_TICK_RATE;
                 CaptureProgress = _captureTimer / zoneData.CaptureTime;
-
+                OnZoneCaptureInProgress?.Invoke(this);
+                
                 if (CaptureProgress >= 1f)
                 {
                     CaptureZone(EntityType.Player);
@@ -125,6 +126,8 @@ namespace Gameplay.GameModeSystem.GameModes.Domination.Components
             {
                 _captureInProgress = false;
                 _captureTimer = 0f;
+                CaptureProgress = 0f;
+                OnZoneCaptureInProgress?.Invoke(this);
             }
         }
         
