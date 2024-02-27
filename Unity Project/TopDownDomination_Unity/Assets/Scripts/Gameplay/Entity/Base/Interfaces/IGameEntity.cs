@@ -10,6 +10,7 @@ namespace Gameplay.Entity.Base.Interfaces
 {
     public interface IGameEntity
     {
+        bool Initiated { get; }
         bool IsActive { get; }
         EntityType EntityType { get; }
         Transform EntityTransform { get; }

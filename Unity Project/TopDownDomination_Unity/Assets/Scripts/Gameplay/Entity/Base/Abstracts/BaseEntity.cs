@@ -19,6 +19,7 @@ namespace Gameplay.Entity.Base.Abstracts
         [SerializeField] private EntityMovementBase entityMovement;
         [SerializeField] private EntityInteractionsController entityInteractions;
 
+        public bool Initiated { get; private set; }
         public bool IsActive => !entityHealth.IsDead && gameObject.activeSelf;
         public EntityType EntityType => EntityData != null ? EntityData.EntityType : EntityType.Unknown;
         
@@ -42,6 +43,7 @@ namespace Gameplay.Entity.Base.Abstracts
             InitiateExtraComponents();
 
             entityHealth.OnDied += OnEntityDiedHandler;
+            Initiated = true;
         }
 
         public void Revive()

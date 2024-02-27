@@ -1,4 +1,5 @@
-﻿using Gameplay.Entity.Base.Interfaces;
+﻿using System.Collections;
+using Gameplay.Entity.Base.Interfaces;
 using Gameplay.UI.Interfaces;
 using UnityEngine;
 
@@ -13,15 +14,22 @@ namespace Gameplay.Entity.Base.Components.UI
         [SerializeField] private EntityHealthModuleUI[] healthUIModules;
         
         private EntityHealth _ownerHealth;
-        
-         private void OnDestroy()
+
+        private IEnumerator Start()
+        {
+            if (startingHealthComponent == null) yield break;
+            
+            Initiate(startingHealthComponent.Owner);
+        }
+
+        private void OnDestroy()
         {
             UnsubscribePreviousOwner();
         }
         
-        public void Initiate(IGameEntity playerEntity)
+        public void Initiate(IGameEntity ownerEntity)
         {
-            InitiateUIController(playerEntity.EntityHealth);
+            InitiateUIController(ownerEntity.EntityHealth);
         }
 
         public void ToggleUI(bool valueToSet)

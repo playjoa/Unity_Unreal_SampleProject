@@ -12,6 +12,7 @@ namespace Gameplay.Entity.Base.EntityComponents.ExtraComponents.EntityAnimationS
         public static readonly int TakeHitTrigger = Animator.StringToHash("TakeHitTrigger");
         public static readonly int CastPrimaryTrigger = Animator.StringToHash("CastPrimaryTrigger");
         public static readonly int CastSecondaryTrigger = Animator.StringToHash("CastSecondaryTrigger");
+        public static readonly int DeathTrigger = Animator.StringToHash("DeathTrigger");
 
         // Floats
         public static readonly int MoveSpeed = Animator.StringToHash("MoveSpeed");

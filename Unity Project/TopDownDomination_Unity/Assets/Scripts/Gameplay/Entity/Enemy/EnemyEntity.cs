@@ -7,15 +7,18 @@ namespace Gameplay.Entity.Enemy
     {
         [Header("Collider Config.")]
         [SerializeField] private Collider enemyCollider;
+        [SerializeField] private Rigidbody enemyRigidbody;
 
         protected override void OnRevived()
         {
             enemyCollider.enabled = true;
+            enemyRigidbody.isKinematic = false;
         }
 
         protected override void OnDied()
         {
             enemyCollider.enabled = false;
+            enemyRigidbody.isKinematic = true;
         }
     }
 }

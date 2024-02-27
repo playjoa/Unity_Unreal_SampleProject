@@ -21,6 +21,16 @@ namespace Gameplay.Entity.Base.Components.UI
         public override void OnHealthUpdate(HealthChangeData healthEventData)
         {
             FillHealthValue(healthEventData.Victim.EntityHealth.HealthPercentage);
+
+            if (!gameObject.activeSelf)
+            {
+                gameObject.SetActive(true);
+            }
+        }
+
+        public override void OnEntityDied(HealthChangeData healthEventData)
+        {
+            gameObject.SetActive(false);
         }
     }
 }

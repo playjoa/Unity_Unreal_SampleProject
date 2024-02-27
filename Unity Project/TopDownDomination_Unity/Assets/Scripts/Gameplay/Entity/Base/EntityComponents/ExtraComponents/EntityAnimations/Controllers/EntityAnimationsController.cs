@@ -16,7 +16,8 @@ namespace Gameplay.Entity.Base.EntityComponents.ExtraComponents.EntityAnimationS
         {
             base.OnInitiate(owner);
             
-            owner.EntityHealth.OnHealthUpdate += OnPlayerHealthUpdateHandler;
+            owner.EntityHealth.OnHealthUpdate += OnEntityHealthUpdateHandler;
+            owner.EntityHealth.OnDied += OnEntityDiedHandler;
 
             if (owner.TryGetExtraComponent(out _entitySkillsController))
             {
@@ -24,6 +25,17 @@ namespace Gameplay.Entity.Base.EntityComponents.ExtraComponents.EntityAnimationS
             }
         }
         
+        protected override void OnClean()
+        {
+            Owner.EntityHealth.OnHealthUpdate -= OnEntityHealthUpdateHandler;
+            Owner.EntityHealth.OnDied -= OnEntityDiedHandler;
+            
+            if (_entitySkillsController != null)
+            {
+                _entitySkillsController.OnSkillExecuted -= OnPlayerCastedSkillHandler;
+            }
+        }
+
         private void Update()
         {
             if (!Owner.IsActive) return;
@@ -37,19 +49,16 @@ namespace Gameplay.Entity.Base.EntityComponents.ExtraComponents.EntityAnimationS
             return Owner.EntityMovement.GetHorizontalSpeed();
         }
 
-        private void OnPlayerHealthUpdateHandler(HealthChangeData healthChangeData)
+        private void OnEntityHealthUpdateHandler(HealthChangeData healthChangeData)
         {
             if (healthChangeData.DealtAmount >= 0) return;
             
             SetAnimatorTrigger(EntityAnimations.TakeHitTrigger);
         }
-
-        protected override void OnClean()
+        
+        private void OnEntityDiedHandler(HealthChangeData healthChangeData)
         {
-            if (_entitySkillsController != null)
-            {
-                _entitySkillsController.OnSkillExecuted -= OnPlayerCastedSkillHandler;
-            }
+            SetAnimatorTrigger(EntityAnimations.DeathTrigger);
         }
 
         private void OnPlayerCastedSkillHandler(CombatSkill combatSkill)
