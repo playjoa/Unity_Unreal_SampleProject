@@ -108,6 +108,8 @@ namespace Gameplay.GameModeSystem.GameModes.Domination.Components
         {
             if (EntityOwnerType == EntityType.Player) return;
             if (_currentZoneGuardians.Any()) return;
+
+            _currentEntitiesInBase.RemoveWhere(e => !e.IsActive);
             
             if (_currentEntitiesInBase.Count == 1 && _currentEntitiesInBase.Any(e=> e.EntityType == EntityType.Player))
             {
