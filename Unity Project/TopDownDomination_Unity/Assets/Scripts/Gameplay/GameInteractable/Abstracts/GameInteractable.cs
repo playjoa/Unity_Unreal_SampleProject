@@ -1,10 +1,10 @@
 ﻿using System;
 using Gameplay.Entity.Base.Interfaces;
-using Gameplay.GameInteractable.Data;
-using Gameplay.GameInteractable.Interfaces;
+using Gameplay.GameInteractableSystem.Data;
+using Gameplay.GameInteractableSystem.Interfaces;
 using UnityEngine;
 
-namespace Gameplay.GameInteractable.Abstracts
+namespace Gameplay.GameInteractableSystem.Abstracts
 {
     public abstract class GameInteractable : MonoBehaviour, IGameInteractable
     {

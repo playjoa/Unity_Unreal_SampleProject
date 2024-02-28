@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: ClickInteractionData
   m_EditorClassIdentifier: 
   interactType: 0
-  interactInfoText: INTERACT
+  interactInfoText: Press "F" to Interact
   interactionHoldDuration: 0.01

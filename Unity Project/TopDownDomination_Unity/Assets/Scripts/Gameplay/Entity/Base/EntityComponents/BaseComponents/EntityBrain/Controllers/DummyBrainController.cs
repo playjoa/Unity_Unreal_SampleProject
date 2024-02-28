@@ -8,6 +8,9 @@ namespace Gameplay.Entity.Base.EntityComponents.BaseComponents.EntityBrain.Contr
     public class DummyBrainController : EntityBrainController
     {
         public override event Action<CombatSkillRequestPackage> OnEntitySkillRequest;
+        public override event Action OnEntityInteractRequest;
+        public override event Action OnEntityCanceledInteractRequest;
+        
         public override Vector3 MoveDirection => Vector3.zero;
         public override Vector3 AimDirection => Vector3.zero;
     }

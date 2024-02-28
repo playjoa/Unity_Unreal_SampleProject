@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Gameplay.GameInteractable.Data
+namespace Gameplay.GameInteractableSystem.Data
 {
     [CreateAssetMenu(menuName = "Entity/Data/InteractionData", fileName = "New InteractionData")]
     public class InteractData : ScriptableObject

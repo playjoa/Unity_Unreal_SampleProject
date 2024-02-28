@@ -47,8 +47,8 @@ GameObject:
   - component: {fileID: 9043169089154162156}
   - component: {fileID: 7517503944096963471}
   - component: {fileID: 5861033048749491711}
-  - component: {fileID: 3794243529290882022}
   - component: {fileID: 4317402609053865851}
+  - component: {fileID: 8740023244764824189}
   m_Layer: 6
   m_Name: PlayerEntity
   m_TagString: Untagged
@@ -181,19 +181,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3794243529290882022
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5263653556313251293}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: efd5704831ef4b47b7174f3e7bd9a784, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactableFinder: {fileID: 7435346150611557826}
 --- !u!114 &4317402609053865851
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -206,6 +193,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cf4dac38f9b46c19216cc09f54d71c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8740023244764824189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5263653556313251293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b0e7f26bd4241caa704c0c199f757f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionFinder: {fileID: 2270869164728168263}
 --- !u!1 &5583291541372695694
 GameObject:
   m_ObjectHideFlags: 0
@@ -247,7 +247,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4170141838024772171}
-  - component: {fileID: 7435346150611557826}
+  - component: {fileID: 2270869164728168263}
   - component: {fileID: 3789167821356246149}
   m_Layer: 0
   m_Name: InteractorCollider
@@ -271,7 +271,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 3167921699367033362}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7435346150611557826
+--- !u!114 &2270869164728168263
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -280,7 +280,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6655922978334170030}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6d7cdb5be8241bd9fff68c4a3fbedd4, type: 3}
+  m_Script: {fileID: 11500000, guid: 3585b50938934921b2a7bb3874f291ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!65 &3789167821356246149

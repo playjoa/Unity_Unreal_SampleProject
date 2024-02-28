@@ -8,6 +8,8 @@ namespace Gameplay.Entity.Base.EntityComponents.BaseComponents.EntityBrain.Base
     public abstract class EntityBrainController : BaseEntityComponent
     {
         public abstract event Action<CombatSkillRequestPackage> OnEntitySkillRequest;
+        public abstract event Action OnEntityInteractRequest;
+        public abstract event Action OnEntityCanceledInteractRequest;
         public abstract Vector3 MoveDirection { get; }
         public abstract Vector3 AimDirection { get; }
     }

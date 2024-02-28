@@ -1,8 +1,8 @@
 ﻿using System;
 using Gameplay.Entity.Base.Interfaces;
-using Gameplay.GameInteractable.Data;
+using Gameplay.GameInteractableSystem.Data;
 
-namespace Gameplay.GameInteractable.Interfaces
+namespace Gameplay.GameInteractableSystem.Interfaces
 {
     public interface IGameInteractable
     {

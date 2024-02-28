@@ -84,6 +84,5 @@ namespace Gameplay.PlayerInputs.Controller
         {
             OnPlayerInteractCanceledInput?.Invoke();
         }
-
     }
 }

@@ -13,6 +13,9 @@ namespace Gameplay.Entity.Base.EntityComponents.BaseComponents.EntityBrain.Contr
     public class PlayerBrainController : EntityBrainController
     {
         public override event Action<CombatSkillRequestPackage> OnEntitySkillRequest;
+        public override event Action OnEntityInteractRequest;
+        public override event Action OnEntityCanceledInteractRequest;
+        
         public override Vector3 MoveDirection => PlayerMovementInCameraDirection(InputsController.PlayerMovementInput);
         public override Vector3 AimDirection => PlayerAimDirection();
         
@@ -23,12 +26,16 @@ namespace Gameplay.Entity.Base.EntityComponents.BaseComponents.EntityBrain.Contr
         {
             InputsController.OnPrimaryFire += OnPlayerTriggeredPrimaryHandler;
             InputsController.OnStartSecondaryFire += OnPlayerTriggeredSecondaryHandler;
+            InputsController.OnPlayerInteractPerformInput += OnPlayerInteractPerformedHandler;
+            InputsController.OnPlayerInteractCanceledInput += OnPlayerInteractCanceledHandler;
         }
 
         protected override void OnClean()
         {
             InputsController.OnPrimaryFire -= OnPlayerTriggeredPrimaryHandler;
             InputsController.OnStartSecondaryFire -= OnPlayerTriggeredSecondaryHandler;
+            InputsController.OnPlayerInteractPerformInput -= OnPlayerInteractPerformedHandler;
+            InputsController.OnPlayerInteractCanceledInput -= OnPlayerInteractCanceledHandler;
         }
 
         private Vector3 PlayerMovementInCameraDirection(Vector2 playerInputValue)
@@ -66,6 +73,16 @@ namespace Gameplay.Entity.Base.EntityComponents.BaseComponents.EntityBrain.Contr
                 CasterPosition = Owner.EntityTransform.position,
                 WorldPosition = CameraController.GetWorldPositionFromUI(InputsController.PlayerAimInput).SetY(0)
             });
+        }
+        
+        private void OnPlayerInteractPerformedHandler()
+        {
+            OnEntityInteractRequest?.Invoke();
+        }
+
+        private void OnPlayerInteractCanceledHandler()
+        {
+            OnEntityCanceledInteractRequest?.Invoke();
         }
     }
 }

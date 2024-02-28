@@ -1,4 +1,4 @@
-﻿namespace Gameplay.GameInteractable.Data
+﻿namespace Gameplay.GameInteractableSystem.Data
 {
     public enum InteractType
     {

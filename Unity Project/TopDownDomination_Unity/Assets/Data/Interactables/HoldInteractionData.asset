@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: HoldInteractionData
   m_EditorClassIdentifier: 
   interactType: 1
-  interactInfoText: HOLD TO INTERACT
-  interactionHoldDuration: 0.5
+  interactInfoText: Hold "F" to Interact
+  interactionHoldDuration: 0.75

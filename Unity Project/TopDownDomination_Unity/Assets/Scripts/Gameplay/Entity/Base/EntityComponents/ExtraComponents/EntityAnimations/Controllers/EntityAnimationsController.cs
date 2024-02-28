@@ -1,12 +1,11 @@
 using Gameplay.Entity.Base.Components;
 using Gameplay.Entity.Base.EntityComponents.ExtraComponents.EntityAnimationSystem.Base;
-using Gameplay.Entity.Base.EntityComponents.ExtraComponents.EntityAnimationSystem.Utils;
 using Gameplay.Entity.Base.EntityComponents.ExtraComponents.EntityCombatSkills.Abstracts;
 using Gameplay.Entity.Base.EntityComponents.ExtraComponents.EntityCombatSkills.Controller;
 using Gameplay.Entity.Base.EntityComponents.ExtraComponents.EntityCombatSkills.Data;
 using Gameplay.Entity.Base.Interfaces;
 
-namespace Gameplay.Entity.Base.EntityComponents.ExtraComponents.EntityAnimationSystem.Controllers
+namespace Gameplay.Entity.Base.EntityComponents.ExtraComponents.EntityAnimations.Controllers
 {
     public class EntityAnimationsController : EntityAnimationController
     {
@@ -41,7 +40,7 @@ namespace Gameplay.Entity.Base.EntityComponents.ExtraComponents.EntityAnimationS
             if (!Owner.IsActive) return;
             if (Owner.EntityHealth.IsDead) return;
             
-            SetAnimatorFloat(EntityAnimations.MoveSpeed, GetPlayerMoveSpeed());
+            SetAnimatorFloat(EntityAnimationSystem.Utils.EntityAnimations.MoveSpeed, GetPlayerMoveSpeed());
         }
         
         private float GetPlayerMoveSpeed()
@@ -53,12 +52,12 @@ namespace Gameplay.Entity.Base.EntityComponents.ExtraComponents.EntityAnimationS
         {
             if (healthChangeData.DealtAmount >= 0) return;
             
-            SetAnimatorTrigger(EntityAnimations.TakeHitTrigger);
+            SetAnimatorTrigger(EntityAnimationSystem.Utils.EntityAnimations.TakeHitTrigger);
         }
         
         private void OnEntityDiedHandler(HealthChangeData healthChangeData)
         {
-            SetAnimatorTrigger(EntityAnimations.DeathTrigger);
+            SetAnimatorTrigger(EntityAnimationSystem.Utils.EntityAnimations.DeathTrigger);
         }
 
         private void OnPlayerCastedSkillHandler(CombatSkill combatSkill)
@@ -66,10 +65,10 @@ namespace Gameplay.Entity.Base.EntityComponents.ExtraComponents.EntityAnimationS
             switch (combatSkill.BaseData.SkillType)
             {
                 case CombatSkillType.Primary:
-                    SetAnimatorTrigger(EntityAnimations.CastPrimaryTrigger);
+                    SetAnimatorTrigger(EntityAnimationSystem.Utils.EntityAnimations.CastPrimaryTrigger);
                     break;
                 case CombatSkillType.Secondary:
-                    SetAnimatorTrigger(EntityAnimations.CastSecondaryTrigger);
+                    SetAnimatorTrigger(EntityAnimationSystem.Utils.EntityAnimations.CastSecondaryTrigger);
                     break;
             }
         }
