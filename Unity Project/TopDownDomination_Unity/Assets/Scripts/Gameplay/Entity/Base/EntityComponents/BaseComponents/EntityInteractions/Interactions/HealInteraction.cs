@@ -1,17 +1,15 @@
 using Gameplay.Entity.Base.Abstracts;
 using Gameplay.Entity.Base.Components;
+using Gameplay.Entity.Base.EntityComponents.BaseComponents.EntityInteractions.Data;
 using Gameplay.Entity.Base.Interfaces;
 using UnityEngine;
 
 namespace Gameplay.Entity.Base.Interactions
 {
-    public class HealInteraction : EntityInteraction
+    public class HealInteraction : EntityInteraction<HealInteractionData>
     {
-        private int _healAmount;
-        
-        public HealInteraction(IGameEntity owner, IGameEntity target, int healAmount) : base(owner, target)
+        public HealInteraction(IGameEntity owner, IGameEntity target, HealInteractionData interactionData) : base(owner, target, interactionData)
         {
-            _healAmount = Mathf.Abs(healAmount);
         }
 
         protected override void InteractionBehaviour()
@@ -21,7 +19,7 @@ namespace Gameplay.Entity.Base.Interactions
                 new HealthUpdatePackageData
                 {
                     Inflicter = Owner,
-                    Delta = _healAmount
+                    Delta = Mathf.Abs(InteractionData.healAmount)
                 }
             );
         }

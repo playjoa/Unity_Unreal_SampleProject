@@ -14,7 +14,7 @@ namespace Gameplay.Entity.Base.EntityComponents.BaseComponents.EntityInteraction
 
         public override IEntityInteraction GenerateInteraction(IGameEntity owner, IGameEntity target)
         {
-            return new HealInteraction(owner, target, healAmount);
+            return new HealInteraction(owner, target, this);
         }
     }
 }

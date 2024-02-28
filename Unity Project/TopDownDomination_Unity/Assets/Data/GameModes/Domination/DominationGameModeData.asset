@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: eab1cdef-c7ce-404b-bbd1-a8a4d384d98b
   isTimedGameMode: 1
-  gameModeTimeLimit: 120
+  gameModeTimeLimit: 360
   gameModeTimerMode: 0
-  scoreTarget: 350
-  scoreTickPerFlag: 1
+  scoreTarget: 300
+  scoreTickPerFlag: 5

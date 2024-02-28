@@ -1,17 +1,15 @@
 using Gameplay.Entity.Base.Abstracts;
 using Gameplay.Entity.Base.Components;
+using Gameplay.Entity.Base.EntityComponents.BaseComponents.EntityInteractions.Data;
 using Gameplay.Entity.Base.Interfaces;
 using UnityEngine;
 
 namespace Gameplay.Entity.Base.Interactions
 {
-    public class DamageInteraction : EntityInteraction
+    public class DamageInteraction : EntityInteraction<DamageInteractionData>
     {
-        private readonly int _damageAmount;
-        
-        public DamageInteraction(IGameEntity owner, IGameEntity target, int damageAmount) : base(owner, target)
+        public DamageInteraction(IGameEntity owner, IGameEntity target, DamageInteractionData interactionData) : base(owner, target, interactionData)
         {
-            _damageAmount = Mathf.Abs(damageAmount);
         }
 
         protected override void InteractionBehaviour()
@@ -21,7 +19,7 @@ namespace Gameplay.Entity.Base.Interactions
                 new HealthUpdatePackageData
                 {
                     Inflicter = Owner,
-                    Delta = -_damageAmount
+                    Delta = -Mathf.Abs(InteractionData.damageAmount)
                 }
             );
         }

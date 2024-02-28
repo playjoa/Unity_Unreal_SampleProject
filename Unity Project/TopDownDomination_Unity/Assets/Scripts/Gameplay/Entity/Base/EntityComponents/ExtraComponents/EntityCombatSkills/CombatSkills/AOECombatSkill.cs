@@ -32,12 +32,13 @@ namespace Gameplay.Entity.Base.EntityComponents.ExtraComponents.EntityCombatSkil
 
             SpawnVfx(CombatSkillData.VfxToPlay, requestPackage.WorldPosition);
             
-            for (var i = 0; i < _results.Length; i++)
+            for (var i = 0; i < size; i++)
             {
                 var collider = _results[i];
                 if (collider == null) continue;
                 
                 if (!collider.TryGetComponent<IGameEntity>(out var entity)) continue;
+                if (!entity.IsActive) continue;
                 if (!CombatSkillData.TargetsHitEntities.Contains(entity.EntityType)) continue;
                 if (CombatSkillData.TargetsAvoidEntities.Contains(entity.EntityType)) continue;
                 

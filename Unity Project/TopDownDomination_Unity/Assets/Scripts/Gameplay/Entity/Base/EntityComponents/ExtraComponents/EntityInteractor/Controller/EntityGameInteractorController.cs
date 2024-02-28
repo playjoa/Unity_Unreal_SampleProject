@@ -21,8 +21,7 @@ namespace Gameplay.GameInteractableSystem.Controller
         public event Action<IGameInteractable> OnCanceledTryingToInteract;
         public event Action<IGameInteractable> OnStartInteraction;
 
-        public bool CanInteract => interactionFinder.CurrentInteractable != null &&
-                                   interactionFinder.CurrentInteractable.CanInteract &&
+        public bool CanInteract => interactionFinder.CurrentInteractable is {CanInteract: true} &&
                                    _currentInteractState == InteractState.Idle;
 
         private IGameInteractable _currentTryingToInteractInteractable;
@@ -107,12 +106,17 @@ namespace Gameplay.GameInteractableSystem.Controller
 
         private void OnInteractableInRangeHandler(IGameInteractable gameInteractable)
         {
+            if (!Owner.IsActive) return;
+            
             OnGameInteractableAvailable?.Invoke(gameInteractable);
         }
 
         private void OnInteractableOutOfRangeHandler(IGameInteractable gameInteractable)
         {
+            if (!Owner.IsActive) return;
+            
             OnGameInteractableNotAvailable?.Invoke(gameInteractable);
+            OnEntityCanceledInteractRequestHandler();
         }
     }
 }

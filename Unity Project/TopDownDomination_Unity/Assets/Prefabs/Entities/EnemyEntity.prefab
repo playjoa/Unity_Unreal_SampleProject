@@ -431,6 +431,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthBarImage: {fileID: 1671692134410358345}
+  disableWhenDied: 1
 --- !u!1 &7847919325850059542
 GameObject:
   m_ObjectHideFlags: 0

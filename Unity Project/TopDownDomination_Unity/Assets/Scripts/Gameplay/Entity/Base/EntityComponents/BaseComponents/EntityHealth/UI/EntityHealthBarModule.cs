@@ -7,6 +7,9 @@ namespace Gameplay.Entity.Base.Components.UI
     {
         [Header("Image Feedback")]
         [SerializeField] private Image healthBarImage;
+
+        [Header("Config.")] 
+        [SerializeField] private bool disableWhenDied;
         
         protected override void OnInitiated(EntityHealth healthOwner)
         {
@@ -30,7 +33,8 @@ namespace Gameplay.Entity.Base.Components.UI
 
         public override void OnEntityDied(HealthChangeData healthEventData)
         {
-            gameObject.SetActive(false);
+            if (disableWhenDied)
+                gameObject.SetActive(false);
         }
     }
 }

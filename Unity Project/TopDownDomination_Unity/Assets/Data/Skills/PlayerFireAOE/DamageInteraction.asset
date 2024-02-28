@@ -12,4 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dffe7671d13f4b23871b565ef08edeaf, type: 3}
   m_Name: DamageInteraction
   m_EditorClassIdentifier: 
+  vfxToPlayOnOwner: {fileID: 0}
+  vfxToPlayOnTarget: {fileID: 11400000, guid: 657f73f81884e91478cbd853b6b2e874, type: 2}
   damageAmount: 50

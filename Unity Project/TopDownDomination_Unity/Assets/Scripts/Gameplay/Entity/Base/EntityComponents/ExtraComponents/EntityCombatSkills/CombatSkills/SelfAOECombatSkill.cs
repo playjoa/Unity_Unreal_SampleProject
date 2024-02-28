@@ -38,6 +38,7 @@ namespace Gameplay.Entity.Base.EntityComponents.ExtraComponents.EntityCombatSkil
                 if (collider == null) continue;
                 
                 if (!collider.TryGetComponent<IGameEntity>(out var entity)) continue;
+                if (!entity.IsActive) continue;
                 if (!CombatSkillData.TargetsHitEntities.Contains(entity.EntityType)) continue;
                 if (CombatSkillData.TargetsAvoidEntities.Contains(entity.EntityType)) continue;
 

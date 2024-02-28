@@ -93,6 +93,8 @@ namespace Gameplay.Entity.Base.EntityComponents.BaseComponents.EntityMovement
              if (Owner.EntityHealth.IsDead) return;
 
              var lookDirection = GetEntityAimDirection();
+             if (lookDirection == Vector3.zero) return;
+             
              var lookRotation = Quaternion.LookRotation(lookDirection);
              var slerpRotation = Quaternion.Slerp(Owner.EntityGraphics.EntityGraphicsHolder.rotation, lookRotation,
                  Time.deltaTime * movementData.RotateSpeed);

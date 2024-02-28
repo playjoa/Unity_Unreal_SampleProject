@@ -14,7 +14,7 @@ namespace Gameplay.Entity.Base.EntityComponents.BaseComponents.EntityInteraction
         
         public override IEntityInteraction GenerateInteraction(IGameEntity owner, IGameEntity target)
         {
-            return new DamageInteraction(owner, target, damageAmount);
+            return new DamageInteraction(owner, target, this);
         }
     }
 }
