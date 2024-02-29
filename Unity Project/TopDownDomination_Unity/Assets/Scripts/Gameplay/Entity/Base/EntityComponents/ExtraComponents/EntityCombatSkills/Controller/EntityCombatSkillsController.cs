@@ -61,6 +61,7 @@ namespace Gameplay.Entity.Base.EntityComponents.ExtraComponents.EntityCombatSkil
         
         private void OnEntityRequestedSkillHandler(CombatSkillRequestPackage requestPackage)
         {
+            if (!Owner.IsActive) return;
             if (_castingSkill) return;
             if (!CombatSkills.TryGetValue(requestPackage.SkillType, out var combatSkill)) return;
             if (!combatSkill.CanCast) return;

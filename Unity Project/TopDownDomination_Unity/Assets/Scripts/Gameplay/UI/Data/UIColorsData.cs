@@ -8,5 +8,11 @@ namespace Gameplay.UI.Data
         [Header("Interaction Colors")]
         public Color selectedUIColor;
         public Color notSelectedUIColor;
+
+        [Header("End Game Colors")] 
+        public Color backgroundGameOverColor;
+        public Color backgroundSuccessColor;
+        public Color titleGameOverColor;
+        public Color titleSuccessColor;
     }
 }

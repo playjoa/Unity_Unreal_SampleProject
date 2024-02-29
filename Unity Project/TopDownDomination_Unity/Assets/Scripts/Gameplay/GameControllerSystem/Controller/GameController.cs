@@ -53,6 +53,7 @@ namespace Gameplay.GameControllerSystem.Controller
         
         public MapContentController MapContentController { get; private set; }
         public IGameEntity PlayerEntity { get; private set; }
+        public bool GameInitiated { get; private set; }
 
         private static GameDataController GameDataController => GameDataController.ME;
         
@@ -86,6 +87,7 @@ namespace Gameplay.GameControllerSystem.Controller
                 yield return gameSystem.Initiate(this);
             }
 
+            GameInitiated = true;
             OnGameSystemsInitialized?.Invoke(this);
         }
         

@@ -16,5 +16,5 @@ MonoBehaviour:
   isTimedGameMode: 1
   gameModeTimeLimit: 360
   gameModeTimerMode: 0
-  scoreTarget: 300
+  scoreTarget: 350
   scoreTickPerFlag: 5

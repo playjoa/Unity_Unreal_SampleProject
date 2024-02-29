@@ -5,10 +5,10 @@ using UnityEngine;
 
 namespace Gameplay.GameModeSystem.UI
 {
-    public class GameModeUIController : MonoBehaviour, IGameUI
+    public class GameUIController : MonoBehaviour, IGameUI
     {
         [Header("UI Components")]
-        [SerializeField] private GameModeUIComponent[] gameModeUIComponents;
+        [SerializeField] private GameUIComponent[] gameModeUIComponents;
         
         private IGameMode _currentGameMode;
         
@@ -31,7 +31,7 @@ namespace Gameplay.GameModeSystem.UI
         {
             if (!Application.isEditor) return;
 
-            gameModeUIComponents = GetComponentsInChildren<GameModeUIComponent>();
+            gameModeUIComponents = GetComponentsInChildren<GameUIComponent>(true);
         }
     }
 }

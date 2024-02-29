@@ -6,6 +6,8 @@ using Gameplay.Entity.Base.EntityComponents.BaseComponents.EntityGraphics;
 using Gameplay.Entity.Base.EntityComponents.BaseComponents.EntityInteractions;
 using Gameplay.Entity.Base.EntityComponents.BaseComponents.EntityMovement;
 using Gameplay.Entity.Base.Interfaces;
+using Gameplay.GameControllerSystem.Controller;
+using Gameplay.GameModeSystem.Interfaces;
 using UnityEngine;
 
 namespace Gameplay.Entity.Base.Abstracts
@@ -20,7 +22,7 @@ namespace Gameplay.Entity.Base.Abstracts
         [SerializeField] private EntityInteractionsController entityInteractions;
 
         public bool Initiated { get; private set; }
-        public bool IsActive => !entityHealth.IsDead && gameObject.activeSelf;
+        public bool IsActive => !entityHealth.IsDead && gameObject.activeSelf && CurrentGameModeActive();
         public EntityType EntityType => EntityData != null ? EntityData.EntityType : EntityType.Unknown;
         
         public EntityData EntityData { get; private set; }
@@ -38,7 +40,7 @@ namespace Gameplay.Entity.Base.Abstracts
         public void Initiate(EntityData entityData)
         {
             EntityData = entityData;
-            
+
             InitiateBaseComponents();
             InitiateExtraComponents();
 
@@ -120,8 +122,15 @@ namespace Gameplay.Entity.Base.Abstracts
         protected virtual void OnRevived()
         {
         }
-        
-        
+
+        private bool CurrentGameModeActive()
+        {
+            if (!GameController.ME.GameInitiated)
+                return false;
+
+            return GameController.ME.GameModeController.CurrentGameMode.Active;
+        }
+
         private void OnEntityDiedHandler(HealthChangeData healthChangeData)
         {
             OnDied();

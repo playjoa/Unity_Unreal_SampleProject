@@ -6,7 +6,7 @@ using Utils.Extensions;
 
 namespace Gameplay.GameModeSystem.UI
 {
-    public class GameModeTimerUIComponent : GameModeUIComponent
+    public class GameModeTimerUIComponent : GameUIComponent
     {
         [Header("Texts")]
         [SerializeField] private TextMeshProUGUI gameModeTimerTMP;
@@ -16,7 +16,7 @@ namespace Gameplay.GameModeSystem.UI
         
         private IGameMode _currentGameMode;
         
-        public override void Initiate(IGameMode gameMode)
+        protected override void OnInitiated(IGameMode gameMode)
         {
             _currentGameMode = gameMode;
             if (!_currentGameMode.BaseGameModeData.IsTimedGameMode)
