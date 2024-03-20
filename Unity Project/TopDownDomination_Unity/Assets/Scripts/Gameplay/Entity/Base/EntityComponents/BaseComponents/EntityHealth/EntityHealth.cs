@@ -12,7 +12,7 @@ namespace Gameplay.Entity.Base.Components
         
         public int MaxHealthAmount { get; private set; }
         public int CurrentHealthAmount { get; private set; }
-        public float HealthPercentage => MaxHealthAmount <= 0 ? 0 : (float)CurrentHealthAmount / MaxHealthAmount;
+        public float HealthPercentage => MaxHealthAmount <= 0 ? 0 : (float) CurrentHealthAmount / MaxHealthAmount;
         public bool IsInvulnerable { get; private set; } = false;
         public bool IsDead => CurrentHealthAmount <= 0;
 
