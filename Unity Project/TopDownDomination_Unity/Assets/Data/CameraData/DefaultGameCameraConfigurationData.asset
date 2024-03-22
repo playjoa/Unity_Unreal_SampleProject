@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91c48b2b07444aa0b58b2bfc83764d4e, type: 3}
   m_Name: DefaultGameCameraConfigurationData
   m_EditorClassIdentifier: 
-  playerOffSetPosition: {x: 7, y: 10, z: 0}
+  playerOffSetPosition: {x: 3.5, y: 4.75, z: 0}
   cameraStartRotation: {x: 55, y: -90, z: 0}
   cameraFov: 65
   nearClipPlane: 0.001
