@@ -19,6 +19,7 @@ namespace Gameplay.Entity.Base.EntityComponents.ExtraComponents.EntityInteractor
         {
             interactTip.Toggle(false);
             interactTip.ToggleSliderProgress(false);
+            interactTip.ToggleSliderProgress(false);
 
             if (playerEntity.TryGetExtraComponent(out _playerInteractionFinderController))
             {
