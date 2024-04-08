@@ -48,5 +48,7 @@ namespace Gameplay.Entity.Base.Data
         
         public CombatSkillData PrimarySkillData => primarySkillData;
         public CombatSkillData SecondarySkillData => secondarySkillData;
+
+        public const float MAX_STAT_VALUE = 10f;
     }
 }

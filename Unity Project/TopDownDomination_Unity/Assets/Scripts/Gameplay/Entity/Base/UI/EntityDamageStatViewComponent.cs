@@ -6,7 +6,7 @@ namespace Gameplay.Entity.Base.UI
     {
         protected override void OnInitiate(EntityData entityData)
         {
-            SetStatFillAmount(entityData.DamageStatValue / 10f);
+            SetStatFillAmount(entityData.DamageStatValue / EntityData.MAX_STAT_VALUE);
         }
     }
 }

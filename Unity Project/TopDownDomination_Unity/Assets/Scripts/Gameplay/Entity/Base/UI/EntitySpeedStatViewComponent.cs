@@ -6,7 +6,7 @@ namespace Gameplay.Entity.Base.UI
     {
         protected override void OnInitiate(EntityData entityData)
         {
-            SetStatFillAmount(entityData.SpeedStatValue / 10f);
+            SetStatFillAmount(entityData.SpeedStatValue / EntityData.MAX_STAT_VALUE);
         }
     }
 }
