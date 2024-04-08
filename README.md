@@ -70,11 +70,25 @@ Both engines are kept vanilla, without third-party assets, to maximize utilizati
 
 ---
 
-## Controls
-- **Movement:** WASD
-- **Aim:** Mouse
-- **Primary Ability:** Mouse 1
-- **Secondary Ability:** Mouse 2
-- **Interact:** F
+#ScreenShots
+## - Unity Build Screenshots
+#### MenuScreen
+![](ScreenShots/Unity_MenuScreen.png)
+#### CharacterSelection:
+![](ScreenShots/Unity_CharacterSelection.png)
+#### Casting Skill:
+![](ScreenShots/Unity_CastingSkills.png)
+#### Interactables:
+![](ScreenShots/Unity_Interacting.png)
 
 ---
+
+## - Unreal Build Screenshots
+#### MenuScreen:
+![](ScreenShots/Unreal_MenuScreen.png)
+#### CharacterSelection:
+![](ScreenShots/Unreal_CharacterSelection.png)
+#### Casting Skill:
+![](ScreenShots/Unreal_CastingSkill.png)
+#### Interactables:
+![](ScreenShots/Unreal_Interacting.png)
