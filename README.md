@@ -70,7 +70,7 @@ Both engines are kept vanilla, without third-party assets, to maximize utilizati
 
 ---
 
-#ScreenShots
+# ScreenShots
 ## - Unity Build Screenshots
 #### MenuScreen
 ![](ScreenShots/Unity_MenuScreen.png)
