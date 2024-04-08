@@ -85,7 +85,7 @@ namespace Gameplay.Entity.Base.EntityComponents.ExtraComponents.EntityCombatSkil
             {
                 yield return _coolDownWaitTime;
                 
-                _currentCoolDownTime -= WAIT_TIME_TICK;
+                _currentCoolDownTime += WAIT_TIME_TICK;
                 SetCoolDownTime(_currentCoolDownTime);
                 SetCoolDownProgress(CoolDownProgress);
             }
@@ -96,7 +96,7 @@ namespace Gameplay.Entity.Base.EntityComponents.ExtraComponents.EntityCombatSkil
 
         private void OnSkillExecutedHandler(CombatSkill combatSkill)
         {
-            _currentCoolDownTime = combatSkill.BaseData.CoolDown;
+            _currentCoolDownTime = 0;
             SetCoolDownTime(_currentCoolDownTime);
             SetCoolDownProgress(CoolDownProgress);
             ToggleCoolDownState(true);
